@@ -26,16 +26,21 @@ docker cp gb-yolo:/workspace/darknet/darknet ./darknet
 make weights 
 Start training: 
 ./darknet detector train ds/baram/obj.data cfg/yolov4-tiny-baram.cfg yolov4-tiny.conv.29  -map 
+이어서
+./darknet detector train ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_last.weights  -map 
 
 test
 ./darknet detector test ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_last.weights -thresh 0.25
 ./darknet detector test ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_last.weights -thresh 0.15
+./darknet detector test ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_best.weights -thresh 0.15
+./darknet detector test ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_last.weights -thresh 0.06
 ds/baram/img/baram_test1_class_2_4.jpg
 ds/baram/img/baram_test1_class_1_10.jpg
 ds/baram/img/baram_test1_class_5_10.jpg
-ds/baram/img/baram_test1_class_5_1.jpg
+ds/baram/img/baram_test1_class_5_2.jpg
 ds/baram/img/baram_test1_class_6_1.jpg
-./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_last.weights -ext_output test3.mp4
+ds/baram/img/baram_test1_class_4_2.jpg
+./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_last.weights -ext_output test.mp4
 
 ==================
 weights to tensorflow 
