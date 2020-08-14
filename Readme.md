@@ -26,14 +26,20 @@ docker cp gb-yolo:/workspace/darknet/darknet ./darknet
 make weights 
 Start training: 
 ./darknet detector train ds/baram/obj.data cfg/yolov4-tiny-baram.cfg yolov4-tiny.conv.29  -map 
+baram_test4
+./darknet detector train ds/baram_test4/obj.data cfg/yolov4-tiny-baram.cfg yolov4-tiny.conv.29  -map 
+./darknet detector test ds/baram_test4/obj.data cfg/yolov4-tiny-baram.cfg baram_test4/yolov4-tiny-baram_last.weights -thresh 0.06
+
 이어서
-./darknet detector train ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_last.weights  -map 
+./darknet detector train ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_last.weights  -map 
+4번 인식못해 27번으로 새로 추가함
+./darknet detector train ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_last.weights  -map 
 
 test
-./darknet detector test ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_last.weights -thresh 0.25
-./darknet detector test ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_last.weights -thresh 0.15
-./darknet detector test ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_best.weights -thresh 0.15
-./darknet detector test ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_last.weights -thresh 0.06
+./darknet detector test ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_last.weights -thresh 0.25
+./darknet detector test ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_last.weights -thresh 0.15
+./darknet detector test ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_best.weights -thresh 0.15
+./darknet detector test ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_last.weights -thresh 0.06
 ds/baram/img/baram_test1_class_2_4.jpg
 ds/baram/img/baram_test1_class_1_10.jpg
 ds/baram/img/baram_test1_class_5_10.jpg
@@ -41,13 +47,46 @@ ds/baram/img/baram_test1_class_5_2.jpg
 ds/baram/img/baram_test1_class_5_1.jpg
 ds/baram/img/baram_test1_class_6_1.jpg
 ds/baram/img/baram_test1_class_4_2.jpg
-./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_best.weights -ext_output test3.mp4
-./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_last.weights -ext_output test.mp4
-./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_last.weights -ext_output t1.mp4
-./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_last.weights -ext_output t2.mp4
-./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_last.weights -ext_output t3.mp4
-./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_last.weights -ext_output t4.mp4
-./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_last.weights -ext_output t5.mp4
+
+test/1_돋보기.jpg
+test/2_건너뛰기.jpg
+test/3_초록쾌완1.jpg
+test/4_쾌다음.jpg
+test/4_쾌다음2.jpg
+test/5_쾌버튼1-노랑.jpg
+test/6_완료쾌창수락1.jpg
+test/6_완료쾌창수락2.jpg
+test/7_쾌버튼1-회색-수락하기.jpg
+test/8_터치하여즉시수락-텍스트.jpg
+test/9_자동이동중_텍스트.jpg
+test/10_뉴아이콘.jpg
+test/11_도감100퍼.jpg
+test/12_완료하기.jpg
+test/12_완료하기2.jpg
+test/13_이동하기.jpg
+test/14_걸어가기.jpg
+test/15_사냥도감_제목.jpg
+test/16_업적.jpg
+test/17_대화.jpg
+test/18_이동하기알림.jpg
+test/19_도전임무완료.jpg
+test/20_수락하기-텍스트-쾌창1.jpg
+test/20_수락하기-텍스트-쾌창2.jpg
+test/21_보상받기-이벤트창.jpg
+test/22_모두받기-이벤트창.jpg
+test/23_자동이동중-아이콘.jpg
+test/24_모두받기-우편함.jpg
+test/25_확인-우편함.jpg
+test/26_업적 모두받기.jpg
+
+
+./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_best.weights -ext_output test3.mp4
+./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_last.weights -ext_output test.mp4
+./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_last.weights -ext_output t1.mp4
+./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_last.weights -ext_output t2.mp4
+./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_last.weights -ext_output t3.mp4
+./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_last.weights -ext_output t4.mp4
+./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_last.weights -ext_output t5.mp4
 
 
 ==================

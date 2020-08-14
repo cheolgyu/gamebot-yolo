@@ -7,3 +7,5 @@ darknet
 *.mp4
 *.jpg
 *.png
+*.weights
+
