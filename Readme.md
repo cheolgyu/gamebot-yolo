@@ -38,9 +38,17 @@ ds/baram/img/baram_test1_class_2_4.jpg
 ds/baram/img/baram_test1_class_1_10.jpg
 ds/baram/img/baram_test1_class_5_10.jpg
 ds/baram/img/baram_test1_class_5_2.jpg
+ds/baram/img/baram_test1_class_5_1.jpg
 ds/baram/img/baram_test1_class_6_1.jpg
 ds/baram/img/baram_test1_class_4_2.jpg
+./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_best.weights -ext_output test3.mp4
 ./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_last.weights -ext_output test.mp4
+./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_last.weights -ext_output t1.mp4
+./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_last.weights -ext_output t2.mp4
+./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_last.weights -ext_output t3.mp4
+./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_last.weights -ext_output t4.mp4
+./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup2/yolov4-tiny-baram_last.weights -ext_output t5.mp4
+
 
 ==================
 weights to tensorflow 

@@ -1,0 +1,9 @@
+ds
+backup
+backup2
+.ipynb_checkpoints
+yolov4-tiny.conv.29
+darknet
+*.mp4
+*.jpg
+*.png
