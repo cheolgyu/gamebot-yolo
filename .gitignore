@@ -1,4 +1,6 @@
 ds
+ds_old
+backup*
 backup
 backup2
 .ipynb_checkpoints
@@ -8,4 +10,5 @@ darknet
 *.jpg
 *.png
 *.weights
+yolo_mark
 

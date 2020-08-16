@@ -12,7 +12,9 @@ scripts/install_opnecv4.sh
 https://github.com/AlexeyAB/darknet#datasets
 OpenImages : python ./scripts/get_openimages_dataset.py기차 감지 데이터 세트에 레이블 지정에 사용
 Pascal VOC : python ./scripts/voc_label.pyTrain / Test / Val 감지 데이터 세트에 레이블을 지정 하는 데 사용
-
+./yolo_mark ds/baram/img/new ds/baram/train.txt ds/baram/obj.names
+./yolo_mark ds/baram/img/new cap_video t4.mp4 10
+./yolo_mark ds/baram/img/new cap_video t2.mp4 10
 ====================
 build 
 docker build -t gb-yolo:latest .  
@@ -31,15 +33,17 @@ baram_test4
 ./darknet detector test ds/baram_test4/obj.data cfg/yolov4-tiny-baram.cfg baram_test4/yolov4-tiny-baram_last.weights -thresh 0.06
 
 이어서
-./darknet detector train ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_last.weights  -map 
+./darknet detector train ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup4/yolov4-tiny-baram_last.weights  -map 
 4번 인식못해 27번으로 새로 추가함
-./darknet detector train ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_last.weights  -map 
+./darknet detector train ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup4/yolov4-tiny-baram_last.weights  -map 
 
 test
-./darknet detector test ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_last.weights -thresh 0.25
-./darknet detector test ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_last.weights -thresh 0.15
-./darknet detector test ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_best.weights -thresh 0.15
-./darknet detector test ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_last.weights -thresh 0.06
+./darknet detector test ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup4/yolov4-tiny-baram_last.weights -thresh 0.25
+./darknet detector test ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup4/yolov4-tiny-baram_last.weights -thresh 0.15
+./darknet detector test ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup4/yolov4-tiny-baram_best.weights -thresh 0.15
+./darknet detector test ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup4/yolov4-tiny-baram_last.weights -thresh 0.06
+ ./darknet detector test ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup4/yolov4-tiny-baram_last.weights -thresh 0.8
+
 ds/baram/img/baram_test1_class_2_4.jpg
 ds/baram/img/baram_test1_class_1_10.jpg
 ds/baram/img/baram_test1_class_5_10.jpg
@@ -53,6 +57,9 @@ test/2_건너뛰기.jpg
 test/3_초록쾌완1.jpg
 test/4_쾌다음.jpg
 test/4_쾌다음2.jpg
+test/4_쾌다음3.jpg
+test/4_쾌다4.jpg
+test/4_쾌다음5.jpg
 test/5_쾌버튼1-노랑.jpg
 test/6_완료쾌창수락1.jpg
 test/6_완료쾌창수락2.jpg
@@ -80,14 +87,14 @@ test/25_확인-우편함.jpg
 test/26_업적 모두받기.jpg
 
 
-./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_best.weights -ext_output test3.mp4
-./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_last.weights -ext_output test.mp4
-./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_last.weights -ext_output t1.mp4
-./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_last.weights -ext_output t2.mp4
-./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_last.weights -ext_output t3.mp4
-./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_last.weights -ext_output t4.mp4
-./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup3/yolov4-tiny-baram_last.weights -ext_output t5.mp4
-
+./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup4/yolov4-tiny-baram_best.weights -ext_output test3.mp4
+./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup4/yolov4-tiny-baram_last.weights -ext_output test.mp4
+./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup4/yolov4-tiny-baram_last.weights -ext_output t1.mp4
+./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup4/yolov4-tiny-baram_last.weights -ext_output t2.mp4
+./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup4/yolov4-tiny-baram_last.weights -ext_output t3.mp4
+./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup4/yolov4-tiny-baram_last.weights -ext_output t4.mp4
+./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup4/yolov4-tiny-baram_last.weights -ext_output t5.mp4
+./darknet detector demo ds/baram/obj.data cfg/yolov4-tiny-baram.cfg backup4/yolov4-tiny-baram_last.weights -ext_output t6.mp4
 
 ==================
 weights to tensorflow 
