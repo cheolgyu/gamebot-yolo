@@ -126,12 +126,15 @@ ds/test_img/26_업적 모두받기.jpg
 
 ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights 
 ## weights to tensorflow  to tflite
-python save_model.py --weights ./data/yolov4-tiny-3l_baram_3_best.weights --output ./checkpoints/yolov4-tiny-3l_baram_3_best --input_size 608 --model yolov4 --framework tflite --tiny
+cp ~/workspace/gb-yolo/backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights /home/cheolgyu/workspace/tensorflow-yolov4-tflite/data
+
+python save_model.py --weights ./data/yolov4-tiny-3l_baram_3_best.weights --output ./checkpoints/yolov4-tiny-3l_baram_3_best --input_size 832 --model yolov4 --framework tflite --tiny
 
 python convert_tflite.py --weights ./checkpoints/yolov4-tiny-3l_baram_3_best --output ./checkpoints/yolov4-tiny-3l_baram_3_best.tflite
 
 
 # Run demo tflite model
-python detect.py --weights ./checkpoints/yolov4-tiny-3l_baram_3_best.tflite --size 608 --model yolov4 --image ./data/1597947045328.jpg --framework tflite
 
-python detect.py --weights ./checkpoints/yolov4-tiny-3l_baram_3_best --size 608 --model yolov4 --image ./data/7_쾌버튼1-회색-수락하기.jpg --tiny
+python detect.py --weights ./checkpoints/yolov4-tiny-3l_baram_3_best.tflite --size 832 --model yolov4 --image ./data/1597947045328.jpg --framework tflite
+
+python detect.py --weights ./checkpoints/yolov4-tiny-3l_baram_3_best --size 832 --model yolov4 --image ./data/7_쾌버튼1-회색-수락하기.jpg --tiny
