@@ -28,7 +28,10 @@ OpenImages : python ./scripts/get_openimages_dataset.py기차 감지 데이터 �
 Pascal VOC : python ./scripts/voc_label.pyTrain / Test / Val 감지 데이터 세트에 레이블을 지정 하는 데 사용
 ./yolo_mark ds/baram_3/img/all ds/baram_3/train.txt ds/baram_3/obj.names
 ./yolo_mark ds/baram/img/new cap_video t4.mp4 10
-./yolo_mark ds/baram/img/new cap_video t1_height.mp4 10
+./yolo_mark ds/baram_3/img/baram_2020-08-21-16-46-01 cap_video ds/test_mp4/baram_2020-08-21-16-46-01.mp4 10
+./yolo_mark ds/baram_3/img/baram_2020-08-21-15-31-18 cap_video ds/test_mp4/baram_2020-08-21-15-31-18.mp4 10
+
+./yolo_mark ds/baram_3/img/baram_2020-08-21-16-46-01 ds/baram_3/train.txt ds/baram_3/obj.names
 
 ### build 
 docker build -t gb-yolo:latest .  
@@ -118,6 +121,8 @@ ds/test_img/26_업적 모두받기.jpg
 ./darknet detector demo ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -ext_output ds/test_mp4/t5.mp4
 ./darknet detector demo ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -ext_output ds/test_mp4/t6.mp4
 ./darknet detector demo ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -ext_output ds/test_mp4/t7.mp4
+./darknet detector demo ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -ext_output ds/test_mp4/baram_2020-08-21-15-31-18.mp4
+./darknet detector demo ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -ext_output ds/test_mp4/baram_2020-08-21-16-46-01.mp4
 
 ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights 
 ## weights to tensorflow  to tflite
