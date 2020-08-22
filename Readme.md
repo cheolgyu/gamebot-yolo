@@ -27,11 +27,16 @@ https://github.com/AlexeyAB/darknet#datasets
 OpenImages : python ./scripts/get_openimages_dataset.py기차 감지 데이터 세트에 레이블 지정에 사용
 Pascal VOC : python ./scripts/voc_label.pyTrain / Test / Val 감지 데이터 세트에 레이블을 지정 하는 데 사용
 ./yolo_mark ds/baram_3/img/all ds/baram_3/train.txt ds/baram_3/obj.names
+./yolo_mark ds/baram_3/img/class_3 ds/baram_3/train.txt ds/baram_3/obj.names
 ./yolo_mark ds/baram/img/new cap_video t4.mp4 10
 ./yolo_mark ds/baram_3/img/baram_2020-08-21-16-46-01 cap_video ds/test_mp4/baram_2020-08-21-16-46-01.mp4 10
 ./yolo_mark ds/baram_3/img/baram_2020-08-21-15-31-18 cap_video ds/test_mp4/baram_2020-08-21-15-31-18.mp4 10
 
+./yolo_mark ds/baram_3/img/baram_2020-08-21-15-31-18 ds/baram_3/train.txt ds/baram_3/obj.names
+
+
 ./yolo_mark ds/baram_3/img/baram_2020-08-21-16-46-01 ds/baram_3/train.txt ds/baram_3/obj.names
+labelImg ~/workspace/gb-yolo/baram3/img/class_4 ~/workspace/gb-yolo/baram3/classes.txt
 
 ### build 
 docker build -t gb-yolo:latest .  
@@ -58,7 +63,7 @@ backup_baram_2<= 현재진행중
 
 ./darknet detector train ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights  -map 
 
-./darknet detector train ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights  -map 
+./darknet detector train ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_last.weights  -map 
 #### test
 ./darknet detector test ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -thresh 0.25
 ./darknet detector test ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -thresh 0.15
@@ -128,9 +133,14 @@ ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-
 ## weights to tensorflow  to tflite
 cp ~/workspace/gb-yolo/backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights /home/cheolgyu/workspace/tensorflow-yolov4-tflite/data
 
-python save_model.py --weights ./data/yolov4-tiny-3l_baram_3_best.weights --output ./checkpoints/yolov4-tiny-3l_baram_3_best --input_size 832 --model yolov4 --framework tflite --tiny
+python save_model.py --weights ./data/yolov4-tiny-3l_baram_3_best.weights --output ./checkpoints/yolov4-tiny-3l_baram_3_best-832 --input_size 832 --model yolov4 --framework tflite --tiny
+python convert_tflite.py --weights ./checkpoints/yolov4-tiny-3l_baram_3_best-832 --output ./checkpoints/yolov4-tiny-3l_baram_3_best-832.tflite
 
-python convert_tflite.py --weights ./checkpoints/yolov4-tiny-3l_baram_3_best --output ./checkpoints/yolov4-tiny-3l_baram_3_best.tflite
+python save_model.py --weights ./data/yolov4-tiny-3l_baram_3_best.weights --output ./checkpoints/yolov4-tiny-3l_baram_3_best-608 --input_size 608 --model yolov4 --framework tflite --tiny
+python convert_tflite.py --weights ./checkpoints/yolov4-tiny-3l_baram_3_best-608 --output ./checkpoints/yolov4-tiny-3l_baram_3_best-608.tflite
+
+python save_model.py --weights ./data/yolov4-tiny-3l_baram_3_best.weights --output ./checkpoints/yolov4-tiny-3l_baram_3_best-416 --input_size 416 --model yolov4 --framework tflite --tiny
+python convert_tflite.py --weights ./checkpoints/yolov4-tiny-3l_baram_3_best-416 --output ./checkpoints/yolov4-tiny-3l_baram_3_best-416.tflite
 
 
 # Run demo tflite model
