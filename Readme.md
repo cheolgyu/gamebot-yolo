@@ -8,12 +8,16 @@ https://github.com/tzutalin/labelImg.git
 1. baram 바람에나라
 2. baram_2 
 	바람-임무창의 작은 텍스트를 구분해 내기위해 cfg 바꿔서 학습
-3. baram_3
+3. baram_crop
 	darknet으로는 검출이 되지만  tflite로 바꾸면 정확도가 낮아서 그런지 안됨
-4. baram_3
+4. baram_crop
 	작은텍스트만 학습시켜서 tflite로 돌려보기
-5. baram_3 cfg 수정해서 이어서 학습.
-	
+5. baram_crop cfg 수정해서 이어서 학습.
+
+6. baram_crop 
+	ssd_mobilenet_v1에서 해봤는데 인식률이 기대에 못미침 tiny으로 한후 결과보고
+	tiny-3l로 가자
+
 
 3. stoneage
 
@@ -26,17 +30,17 @@ scripts/install_opnecv4.sh
 https://github.com/AlexeyAB/darknet#datasets
 OpenImages : python ./scripts/get_openimages_dataset.py기차 감지 데이터 세트에 레이블 지정에 사용
 Pascal VOC : python ./scripts/voc_label.pyTrain / Test / Val 감지 데이터 세트에 레이블을 지정 하는 데 사용
-./yolo_mark ds/baram_3/img/all ds/baram_3/train.txt ds/baram_3/obj.names
-./yolo_mark ds/baram_3/img/class_3 ds/baram_3/train.txt ds/baram_3/obj.names
+./yolo_mark ds/baram_crop/img/all ds/baram_crop/train.txt ds/baram_crop/obj.names
+./yolo_mark ds/baram_crop/img/class_3 ds/baram_crop/train.txt ds/baram_crop/obj.names
 ./yolo_mark ds/baram/img/new cap_video t4.mp4 10
-./yolo_mark ds/baram_3/img/baram_2020-08-21-16-46-01 cap_video ds/test_mp4/baram_2020-08-21-16-46-01.mp4 10
-./yolo_mark ds/baram_3/img/baram_2020-08-21-15-31-18 cap_video ds/test_mp4/baram_2020-08-21-15-31-18.mp4 10
+./yolo_mark ds/baram_crop/img/baram_2020-08-21-16-46-01 cap_video ds/test_mp4/baram_2020-08-21-16-46-01.mp4 10
+./yolo_mark ds/baram_crop/img/baram_2020-08-21-15-31-18 cap_video ds/test_mp4/baram_2020-08-21-15-31-18.mp4 10
 
-./yolo_mark ds/baram_3/img/baram_2020-08-21-15-31-18 ds/baram_3/train.txt ds/baram_3/obj.names
+./yolo_mark ds/baram_crop/img/baram_2020-08-21-15-31-18 ds/baram_crop/train.txt ds/baram_crop/obj.names
 
 
-./yolo_mark ds/baram_3/img/baram_2020-08-21-16-46-01 ds/baram_3/train.txt ds/baram_3/obj.names
-labelImg ~/workspace/gb-yolo/baram3/img/class_4 ~/workspace/gb-yolo/baram3/classes.txt
+./yolo_mark ds/baram_crop/img/baram_2020-08-21-16-46-01 ds/baram_crop/train.txt ds/baram_crop/obj.names
+labelImg ~/workspace/gb-yolo/baram3/img/baram_crop/all/ ~/workspace/gb-yolo/baram_crop/classes.txt
 
 ### build 
 docker build -t gb-yolo:latest .  
@@ -54,28 +58,24 @@ backup_baram_2<= 현재진행중
 
 ### 학습하기
 #### 처음
-./darknet detector train ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg yolov4-tiny.conv.29  -map
-./darknet detector train ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3_2.cfg yolov4-tiny.conv.29  -map
+./darknet detector train ds/baram_crop/obj.data cfg/yolov4-tiny-baram_crop.cfg yolov4-tiny.conv.29  -map
 #### 이어서
-./darknet detector train ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3_1/yolov4-tiny-3l_baram_3_best.weights  -map 
-./darknet detector train ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3_1/yolov4-tiny-3l_baram_3_best.weights  -map 
-./darknet detector train ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3_2.cfg backup/backup_baram_3_2/yolov4-tiny-3l_baram_3_2_last.weights  -map 
-
-./darknet detector train ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights  -map 
-
-./darknet detector train ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_last.weights  -map 
+./darknet detector train ds/baram_crop/obj.data cfg/yolov4-tiny-baram_crop.cfg backup/backup_baram_crop/yolov4-tiny-baram_crop_last.weights  -map 
 #### test
-./darknet detector test ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -thresh 0.25
-./darknet detector test ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -thresh 0.15
-./darknet detector test ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup4_1/yolov4-tiny-baram_best.weights -thresh 0.15
-./darknet detector test ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -thresh 0.06
+./darknet detector test ds/baram_crop/obj.data cfg/yolov4-tiny-baram_crop.cfg backup/backup_baram_crop/yolov4-tiny-baram_crop_best.weights -thresh 0.25
+./darknet detector test ds/baram_crop/obj.data cfg/yolov4-tiny-baram_crop.cfg backup/backup_baram_crop/yolov4-tiny-baram_crop_best.weights -thresh 0.15
+./darknet detector test ds/baram_crop/obj.data cfg/yolov4-tiny-baram_crop.cfg backup4_1/yolov4-tiny-baram_best.weights -thresh 0.15
+./darknet detector test ds/baram_crop/obj.data cfg/yolov4-tiny-baram_crop.cfg backup/backup_baram_crop/yolov4-tiny-baram_crop_best.weights -thresh 0.06
 
- ./darknet detector test ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -thresh 0.8
- ./darknet detector test ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -thresh 0.3
-./darknet detector test ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -thresh 0.03
-./darknet detector test ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -thresh 0.01
+ ./darknet detector test ds/baram_crop/obj.data cfg/yolov4-tiny-baram_crop.cfg backup/backup_baram_crop/yolov4-tiny-baram_crop_best.weights -thresh 0.8
+ ./darknet detector test ds/baram_crop/obj.data cfg/yolov4-tiny-baram_crop.cfg backup/backup_baram_crop/yolov4-tiny-baram_crop_best.weights -thresh 0.3
+./darknet detector test ds/baram_crop/obj.data cfg/yolov4-tiny-baram_crop.cfg backup/backup_baram_crop/yolov4-tiny-baram_crop_best.weights -thresh 0.03
+./darknet detector test ds/baram_crop/obj.data cfg/yolov4-tiny-baram_crop.cfg backup/backup_baram_crop/yolov4-tiny-baram_crop_best.weights -thresh 0.01
 
-./darknet detector test ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -thresh 0.01
+./darknet detector test ds/baram_crop/obj.data cfg/yolov4-tiny-baram_crop.cfg backup/backup_baram_crop/yolov4-tiny-baram_crop_last.weights -thresh 0.2
+
+ds/baram_crop/img/all/2020-08-29_145033673394.jpg
+ds/baram_crop/img/all/2020-08-29_143757374233.jpg
 
 ds/test_img/1597947054546.JPEG
 ds/test_img/수락하기.jpg
@@ -117,34 +117,34 @@ ds/test_img/25_확인-우편함.jpg
 ds/test_img/26_업적 모두받기.jpg
 
 
-./darknet detector demo ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -ext_output ds/test_mp4/test3.mp4
-./darknet detector demo ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -ext_output ds/test_mp4/test.mp4
-./darknet detector demo ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -ext_output ds/test_mp4/t1.mp4
-./darknet detector demo ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -ext_output ds/test_mp4/t2.mp4
-./darknet detector demo ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -ext_output ds/test_mp4/t3.mp4
-./darknet detector demo ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -ext_output ds/test_mp4/t4.mp4
-./darknet detector demo ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -ext_output ds/test_mp4/t5.mp4
-./darknet detector demo ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -ext_output ds/test_mp4/t6.mp4
-./darknet detector demo ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -ext_output ds/test_mp4/t7.mp4
-./darknet detector demo ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -ext_output ds/test_mp4/baram_2020-08-21-15-31-18.mp4
-./darknet detector demo ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights -ext_output ds/test_mp4/baram_2020-08-21-16-46-01.mp4
+./darknet detector demo ds/baram_crop/obj.data cfg/yolov4-tiny-baram_crop.cfg backup/backup_baram_crop/yolov4-tiny-baram_crop_best.weights -ext_output ds/test_mp4/test3.mp4
+./darknet detector demo ds/baram_crop/obj.data cfg/yolov4-tiny-baram_crop.cfg backup/backup_baram_crop/yolov4-tiny-baram_crop_best.weights -ext_output ds/test_mp4/test.mp4
+./darknet detector demo ds/baram_crop/obj.data cfg/yolov4-tiny-baram_crop.cfg backup/backup_baram_crop/yolov4-tiny-baram_crop_best.weights -ext_output ds/test_mp4/t1.mp4
+./darknet detector demo ds/baram_crop/obj.data cfg/yolov4-tiny-baram_crop.cfg backup/backup_baram_crop/yolov4-tiny-baram_crop_best.weights -ext_output ds/test_mp4/t2.mp4
+./darknet detector demo ds/baram_crop/obj.data cfg/yolov4-tiny-baram_crop.cfg backup/backup_baram_crop/yolov4-tiny-baram_crop_best.weights -ext_output ds/test_mp4/t3.mp4
+./darknet detector demo ds/baram_crop/obj.data cfg/yolov4-tiny-baram_crop.cfg backup/backup_baram_crop/yolov4-tiny-baram_crop_best.weights -ext_output ds/test_mp4/t4.mp4
+./darknet detector demo ds/baram_crop/obj.data cfg/yolov4-tiny-baram_crop.cfg backup/backup_baram_crop/yolov4-tiny-baram_crop_best.weights -ext_output ds/test_mp4/t5.mp4
+./darknet detector demo ds/baram_crop/obj.data cfg/yolov4-tiny-baram_crop.cfg backup/backup_baram_crop/yolov4-tiny-baram_crop_best.weights -ext_output ds/test_mp4/t6.mp4
+./darknet detector demo ds/baram_crop/obj.data cfg/yolov4-tiny-baram_crop.cfg backup/backup_baram_crop/yolov4-tiny-baram_crop_best.weights -ext_output ds/test_mp4/t7.mp4
+./darknet detector demo ds/baram_crop/obj.data cfg/yolov4-tiny-baram_crop.cfg backup/backup_baram_crop/yolov4-tiny-baram_crop_best.weights -ext_output ds/test_mp4/baram_2020-08-21-15-31-18.mp4
+./darknet detector demo ds/baram_crop/obj.data cfg/yolov4-tiny-baram_crop.cfg backup/backup_baram_crop/yolov4-tiny-baram_crop_best.weights -ext_output ds/test_mp4/baram_2020-08-21-16-46-01.mp4
 
-ds/baram_3/obj.data cfg/yolov4-tiny-3l_baram_3.cfg backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights 
+ds/baram_crop/obj.data cfg/yolov4-tiny-baram_crop.cfg backup/backup_baram_crop/yolov4-tiny-baram_crop_best.weights 
 ## weights to tensorflow  to tflite
-cp ~/workspace/gb-yolo/backup/backup_baram_3/yolov4-tiny-3l_baram_3_best.weights /home/cheolgyu/workspace/tensorflow-yolov4-tflite/data
+cp ~/workspace/gb-yolo/backup/backup_baram_crop/yolov4-tiny-baram_crop_best.weights /home/cheolgyu/workspace/tensorflow-yolov4-tflite/data
 
-python save_model.py --weights ./data/yolov4-tiny-3l_baram_3_best.weights --output ./checkpoints/yolov4-tiny-3l_baram_3_best-832 --input_size 832 --model yolov4 --framework tflite --tiny
-python convert_tflite.py --weights ./checkpoints/yolov4-tiny-3l_baram_3_best-832 --output ./checkpoints/yolov4-tiny-3l_baram_3_best-832.tflite
+python save_model.py --weights ./data/yolov4-tiny-baram_crop_best.weights --output ./checkpoints/yolov4-tiny-baram_crop_best-832 --input_size 832 --model yolov4 --framework tflite --tiny
+python convert_tflite.py --weights ./checkpoints/yolov4-tiny-baram_crop_best-832 --output ./checkpoints/yolov4-tiny-baram_crop_best-832.tflite
 
-python save_model.py --weights ./data/yolov4-tiny-3l_baram_3_best.weights --output ./checkpoints/yolov4-tiny-3l_baram_3_best-608 --input_size 608 --model yolov4 --framework tflite --tiny
-python convert_tflite.py --weights ./checkpoints/yolov4-tiny-3l_baram_3_best-608 --output ./checkpoints/yolov4-tiny-3l_baram_3_best-608.tflite
+python save_model.py --weights ./data/yolov4-tiny-baram_crop_best.weights --output ./checkpoints/yolov4-tiny-baram_crop_best-608 --input_size 608 --model yolov4 --framework tflite --tiny
+python convert_tflite.py --weights ./checkpoints/yolov4-tiny-baram_crop_best-608 --output ./checkpoints/yolov4-tiny-baram_crop_best-608.tflite
 
-python save_model.py --weights ./data/yolov4-tiny-3l_baram_3_best.weights --output ./checkpoints/yolov4-tiny-3l_baram_3_best-416 --input_size 416 --model yolov4 --framework tflite --tiny
-python convert_tflite.py --weights ./checkpoints/yolov4-tiny-3l_baram_3_best-416 --output ./checkpoints/yolov4-tiny-3l_baram_3_best-416.tflite
+python save_model.py --weights ./data/yolov4-tiny-baram_crop_best.weights --output ./checkpoints/yolov4-tiny-baram_crop_best-416 --input_size 416 --model yolov4 --framework tflite --tiny
+python convert_tflite.py --weights ./checkpoints/yolov4-tiny-baram_crop_best-416 --output ./checkpoints/yolov4-tiny-baram_crop_best-416.tflite
 
 
 # Run demo tflite model
 
-python detect.py --weights ./checkpoints/yolov4-tiny-3l_baram_3_best.tflite --size 832 --model yolov4 --image ./data/1597947045328.jpg --framework tflite
+python detect.py --weights ./checkpoints/yolov4-tiny-baram_crop_best.tflite --size 832 --model yolov4 --image ./data/1597947045328.jpg --framework tflite
 
-python detect.py --weights ./checkpoints/yolov4-tiny-3l_baram_3_best --size 832 --model yolov4 --image ./data/7_쾌버튼1-회색-수락하기.jpg --tiny
+python detect.py --weights ./checkpoints/yolov4-tiny-baram_crop_best --size 832 --model yolov4 --image ./data/7_쾌버튼1-회색-수락하기.jpg --tiny
