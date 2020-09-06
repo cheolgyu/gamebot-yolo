@@ -1,0 +1,5 @@
+classes= 80
+train  = workspace/baram/project_3/train.txt
+valid = workspace/baram/project_3/valid.txt
+names = workspace/baram/project_3/data.names
+backup = workspace/baram/project_3/backup

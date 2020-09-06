@@ -6,25 +6,13 @@ https://github.com/tzutalin/labelImg.git
 
 # 프로젝트들
 1. baram 바람에나라
-2. baram_2 
-	바람-임무창의 작은 텍스트를 구분해 내기위해 cfg 바꿔서 학습
-3. baram_crop
-	darknet으로는 검출이 되지만  tflite로 바꾸면 정확도가 낮아서 그런지 안됨
-4. baram_crop
-	작은텍스트만 학습시켜서 tflite로 돌려보기
-5. baram_crop cfg 수정해서 이어서 학습.
-
-6. baram_crop 
-	ssd_mobilenet_v1에서 해봤는데 인식률이 기대에 못미침 tiny으로 한후 결과보고
-	tiny-3l로 가자
-
-
-3. stoneage
-
 
 # opncv 설치
 opncv install
 scripts/install_opnecv4.sh
+### 라벨 변경
+convert2Yolo
+
 
 ### 라벨링
 https://github.com/AlexeyAB/darknet#datasets
@@ -60,7 +48,7 @@ backup_baram_2<= 현재진행중
 
 ### 학습하기
 #### 처음
-./darknet detector train ds/baram_crop_3l/obj.data cfg/yolov4-tiny-3l_baram_crop.cfg yolov4-tiny.conv.29  -map
+./darknet detector train workspace/baram/project_3/obj.data cfg/yolov4-tiny-3l_baram_crop.cfg yolov4-tiny.conv.29  -map
 #### 이어서
 ./darknet detector train ds/baram_crop_3l/obj.data cfg/yolov4-tiny-3l_baram_crop.cfg backup/backup_baram_crop_3l/yolov4-tiny-3l_baram_crop_last.weights  -map 
 #### test
