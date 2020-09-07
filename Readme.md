@@ -1,8 +1,29 @@
 
-https://github.com/AlexeyAB/darknet.git
-https://github.com/hunglc007/tensorflow-yolov4-tflite.git
-https://github.com/AlexeyAB/Yolo_mark.git
+yolo : https://github.com/AlexeyAB/darknet.git
+yolo to tflite : https://github.com/hunglc007/tensorflow-yolov4-tflite.git
+라벨링
 https://github.com/tzutalin/labelImg.git
+voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
+
+# 준비
+1. darknet , yolo_mark (동영상 자를때), labelImg 설치
+2. git clone git@github.com:cheolgyu/gamebot-yolo.git
+3. darknet 실행파일 gamebot-yolo에 넣고
+4. git clone git@github.com:cheolgyu/gamebot-dataset.git
+5. gamebot-dataset 이동해서 gamebot-dataset/ds/폴더 원드라이드랑 업로드 동기화 시키고 
+6. gamebot-yolo docker는 사용안하고 우분투에서 실행시킴. 
+7. 사진없고 동영상만 있으면 yolo_mark로 프레임 짜르고 
+8. 사진가지고 라벨링을하는데 labelImg로 하기 
+9. 라벨링 어느정도 완료하면 라벨링된것을 훈련용과 검증용 으로 분류해야됨.
+10. 분류스크립트는 https://github.com/cheolgyu/gamebot-dataset/blob/master/yolo/label_after2.py 참고하고
+11. obj.data 랑 obj.names랑 backup폴더 확인하고 
+12. 학습하기 처음-이어서로 학습하면되고 그래프가안나오면 opnecv가 설치제대로안해서 그런거니깐 보고싶으면 설치 ㄱㄱ
+13. 중간중간 훈련된것 확인하는방법은 학습하기-test보고
+14. 훈련이 어느정된후 tflite로 바꾸는방법은
+15. tensorflow-yolov4-tflite 폴더에 converet_dockerfile 빌드후에 실행시키고
+16. 거기서 weights to tensorflow to tflite 참고해서 실행시키면 됨. 2번실행해야됨.tensorflow(pb) 바꾸고 그담 그걸 tflite로 만들고 이렇게 2번실행.
+
+
 
 # 프로젝트들
 1. baram 바람에나라
@@ -11,26 +32,11 @@ https://github.com/tzutalin/labelImg.git
 opncv install
 scripts/install_opnecv4.sh
 ### 라벨 변경
-convert2Yolo
+convert2Yolo의 예대로 폴더구조 변경해야됨.
 
 
 ### 라벨링
 https://github.com/AlexeyAB/darknet#datasets
-OpenImages : python ./scripts/get_openimages_dataset.py기차 감지 데이터 세트에 레이블 지정에 사용
-Pascal VOC : python ./scripts/voc_label.pyTrain / Test / Val 감지 데이터 세트에 레이블을 지정 하는 데 사용
-./yolo_mark ds/baram_crop/img/all ds/baram_crop_3l/train.txt ds/baram_crop_3l/obj.names
-./yolo_mark ds/baram_crop_3l/img/class_3 ds/baram_crop_3l/train.txt ds/baram_crop_3l/obj.names
-./yolo_mark ds/baram/img/new cap_video t4.mp4 10
-./yolo_mark ds/baram_crop_3l/img/baram_2020-08-21-16-46-01 cap_video ds/test_mp4/baram_2020-08-21-16-46-01.mp4 10
-./yolo_mark ds/baram_crop_3l/img/baram_2020-08-21-15-31-18 cap_video ds/test_mp4/baram_2020-08-21-15-31-18.mp4 10
-
-./yolo_mark ds/baram_crop_3l/img/baram_2020-08-21-15-31-18 ds/baram_crop_3l/train.txt ds/baram_crop_3l/obj.names
-
-
-./yolo_mark ds/baram_crop_3l/img/baram_2020-08-21-16-46-01 ds/baram_crop_3l/train.txt ds/baram_crop_3l/obj.names
-labelImg ~/workspace/gb-yolo/baram3/img/baram_crop/all/ ~/workspace/gb-yolo/baram_crop/classes.txt
-
-labelImg ~/workspace/gb-yolo/ds/baram_crop/img/all/ ~/workspace/gb-yolo/baram_crop/name.txt
 
 ### build 
 docker build -t gb-yolo:latest .  

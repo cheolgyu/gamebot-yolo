@@ -1,0 +1,20 @@
+build
+docker build -t yolov4-test:latest .  
+
+docker run  --name yolov4-test -d -it -v ~/workspace/tensorflow-yolov4-tflite:/workspace/tensorflow-yolov4-tflite  yolov4-test:latest
+
+
+
+==================
+## yolov4-tiny
+python save_model.py --weights ./data/yolov4-tiny-baram_last.weights --output ./checkpoints/yolov4-tiny-baram_last --input_size 416 --model yolov4 --framework tflite --tiny
+# Run demo tensorflow
+python detect.py --weights ./checkpoints/yolov4-tiny-baram_last --size 416 --model yolov4 --image ./data/baram_test1_class_7_7.jpg --tiny  --output ./result3.png
+# yolov4
+python convert_tflite.py --weights ./checkpoints/yolov4-tiny-baram_last --output ./checkpoints/yolov4-tiny-baram_last.tflite
+
+python save_model.py --weights ./data/yolov4-tiny-baram_best.weights --output ./checkpoints/yolov4-tiny-baram_best --input_size 416 --model yolov4 --framework tflite --tiny
+python convert_tflite.py --weights ./checkpoints/yolov4-tiny-baram_best --output ./checkpoints/yolov4-tiny-baram_best.tflite
+
+python detect.py --weights ./checkpoints/yolov4-tiny-3l_baram_3_last.tflite --size 608 --model yolov4 --image ./data/kite.jpg --framework tflite
+=========================
