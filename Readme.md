@@ -1,9 +1,9 @@
 
-yolo : https://github.com/AlexeyAB/darknet.git
-yolo to tflite : https://github.com/hunglc007/tensorflow-yolov4-tflite.git
-라벨링
-https://github.com/tzutalin/labelImg.git
-voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
+yolo : https://github.com/AlexeyAB/darknet.git   
+yolo to tflite : https://github.com/hunglc007/tensorflow-yolov4-tflite.git   
+라벨링   
+https://github.com/tzutalin/labelImg.git   
+voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git   
 
 # 준비
 1. darknet , yolo_mark (동영상 자를때), labelImg 설치
