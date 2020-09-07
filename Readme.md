@@ -18,8 +18,8 @@ voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
 10. 분류스크립트는 https://github.com/cheolgyu/gamebot-dataset/blob/master/yolo/label_after2.py 참고하고
 11. obj.data 랑 obj.names랑 backup폴더 확인하고 
 12. 학습하기 처음-이어서로 학습하면되고 그래프가안나오면 opnecv가 설치제대로안해서 그런거니깐 보고싶으면 설치 ㄱㄱ
-13. 중간중간 훈련된것 확인하는방법은 학습하기-test보고
-14. 훈련이 어느정된후 tflite로 바꾸는방법은
+13. [중간중간 훈련된것 확인하는방법](https://github.com/cheolgyu/gamebot-yolo#test)
+14. [훈련이 어느정된후 tflite로 바꾸는방법은]()
 15. tensorflow-yolov4-tflite 폴더에 converet_dockerfile 빌드후에 실행시키고
 16. 거기서 weights to tensorflow to tflite 참고해서 실행시키면 됨. 2번실행해야됨.tensorflow(pb) 바꾸고 그담 그걸 tflite로 만들고 이렇게 2번실행.
 
