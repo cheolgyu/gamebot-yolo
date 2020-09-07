@@ -55,13 +55,29 @@ backup_baram_2<= 현재진행중
 ##### 사진
 ./darknet detector test 오브젝트.데이터 cfg파일 무게 -thresh 0.25
 ./darknet detector test /home/cheolgyu/workspace/gb-yolo/workspace/baram/project_3/obj.data  /home/cheolgyu/workspace/gb-yolo/cfg/yolov4-tiny-baram.cfg  /home/cheolgyu/workspace/gb-yolo/workspace/baram/project_3/backup/yolov4-tiny-3l_baram_crop_best.weights -thresh 0.25
+
+./darknet detector test /home/cheolgyu/workspace/gb-yolo/workspace/baram/project_3/obj.data  /home/cheolgyu/workspace/gb-yolo/cfg/yolov4-tiny-3l_baram_crop.cfg  /home/cheolgyu/workspace/gb-yolo/workspace/baram/project_3/backup/yolov4-tiny-3l_baram_crop_best.weights -thresh 0.25
+
 ##### 동영상
 ./darknet detector demo 오브젝트.데이터 cfg파일 무게  -ext_output 동영상
 
 ## weights to tensorflow  to tflite
-cp ~/workspace/gb-yolo/backup/backup_baram_crop_3l/yolov4-tiny-3l_baram_crop_best.weights /home/cheolgyu/workspace/tensorflow-yolov4-tflite/data
+cp /home/cheolgyu/workspace/gb-yolo/workspace/baram/project_3/backup/yolov4-tiny-3l_baram_crop_best.weights /home/cheolgyu/workspace/tensorflow-yolov4-tflite/data/
+무게 /home/cheolgyu/workspace/gb-yolo/workspace/baram/project_3/backup/yolov4-tiny-3l_baram_crop_best.weights
+
+yolov4-tiny-3l_baram_crop_best.weights
+
+python save_model.py --weights data/yolov4-tiny-3l_baram_crop_best.weights --output  ./checkpoints/baram/project_3_416 --input_size 416 --model yolov4 --framework tflite --tiny
+
+python save_model.py --weights data/yolov4-tiny-3l_baram_crop_best.weights --output  ./checkpoints/baram/project_3_832 --input_size 832 --model yolov4 --framework tflite --tiny
+
+
+python convert_tflite.py --weights ./checkpoints/baram/project_3_416 --output ./checkpoints/baram/project_3_416/detect-416.tflite
+python convert_tflite.py --weights ./checkpoints/baram/project_3_832 --output ./checkpoints/baram/project_3_832/detect-832.tflite
+
 
 python save_model.py --weights 무게 --output  완료파일 --input_size 416 --model yolov4 --framework tflite --tiny
+
 
 
 python convert_tflite.py --weights 완료파일 --output ./checkpoints/yolov4-tiny-3l-baram_crop_best-832.tflite
