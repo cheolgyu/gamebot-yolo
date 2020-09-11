@@ -55,9 +55,9 @@ backup_baram_2<= 현재진행중
 
 ### 학습하기
 #### 처음
-./darknet detector train workspace/blackdesertm/project_1/obj.data cfg/yolov4-tiny-3l_blackdesertm_project_1.cfg yolov4-tiny.conv.29  -map
+./darknet detector train workspace/v4/project_1/obj.data cfg/yolov4-tiny-v4.cfg yolov4-tiny.conv.29  -map
 #### 이어서
-./darknet detector train ds/baram_crop_3l/obj.data cfg/yolov4-tiny-3l_blackdesertm_project_1.cfg backup/yolov4-tiny-3l_baram_crop_last.weights  -map 
+./darknet detector train ds/baram_crop_3l/obj.data cfg/yolov4-tiny-v4.cfg workspace/v4/project_1/backup/yolov4-tiny-3l_baram_crop_last.weights  -map 
 #### test
 ##### 사진
 ./darknet detector test 오브젝트.데이터 cfg파일 무게 -thresh 0.25
