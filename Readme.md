@@ -3,6 +3,7 @@ yolo : https://github.com/AlexeyAB/darknet.git
 yolo to tflite : https://github.com/hunglc007/tensorflow-yolov4-tflite.git   
 라벨링   
 https://github.com/tzutalin/labelImg.git   
++ sudo apt-get install pyqt5-dev-tools
 voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git   
 
 # 준비
@@ -54,22 +55,22 @@ backup_baram_2<= 현재진행중
 
 ### 학습하기
 #### 처음
-./darknet detector train workspace/baram/project_3/obj.data cfg/yolov4-tiny-3l_baram_crop.cfg yolov4-tiny.conv.29  -map
+./darknet detector train workspace/blackdesertm/project_1/obj.data cfg/yolov4-tiny-3l_blackdesertm_project_1.cfg yolov4-tiny.conv.29  -map
 #### 이어서
-./darknet detector train ds/baram_crop_3l/obj.data cfg/yolov4-tiny-3l_baram_crop.cfg backup/backup_baram_crop_3l/yolov4-tiny-3l_baram_crop_last.weights  -map 
+./darknet detector train ds/baram_crop_3l/obj.data cfg/yolov4-tiny-3l_blackdesertm_project_1.cfg backup/yolov4-tiny-3l_baram_crop_last.weights  -map 
 #### test
 ##### 사진
 ./darknet detector test 오브젝트.데이터 cfg파일 무게 -thresh 0.25
-./darknet detector test /home/cheolgyu/workspace/gb-yolo/workspace/baram/project_3/obj.data  /home/cheolgyu/workspace/gb-yolo/cfg/yolov4-tiny-baram.cfg  /home/cheolgyu/workspace/gb-yolo/workspace/baram/project_3/backup/yolov4-tiny-3l_baram_crop_best.weights -thresh 0.25
+./darknet detector test /home/cheolgyu/workspace/gb-yolo/workspace/blackdesertm/project_1/obj.data  /home/cheolgyu/workspace/gb-yolo/cfg/yolov4-tiny-baram.cfg  /home/cheolgyu/workspace/gb-yolo/workspace/blackdesertm/project_1/backup/yolov4-tiny-3l_baram_crop_best.weights -thresh 0.25
 
-./darknet detector test /home/cheolgyu/workspace/gb-yolo/workspace/baram/project_3/obj.data  /home/cheolgyu/workspace/gb-yolo/cfg/yolov4-tiny-3l_baram_crop.cfg  /home/cheolgyu/workspace/gb-yolo/workspace/baram/project_3/backup/yolov4-tiny-3l_baram_crop_best.weights -thresh 0.25
+./darknet detector test /home/cheolgyu/workspace/gb-yolo/workspace/blackdesertm/project_1/obj.data  /home/cheolgyu/workspace/gb-yolo/cfg/yolov4-tiny-3l_baram_crop.cfg  /home/cheolgyu/workspace/gb-yolo/workspace/blackdesertm/project_1/backup/yolov4-tiny-3l_baram_crop_best.weights -thresh 0.25
 
 ##### 동영상
 ./darknet detector demo 오브젝트.데이터 cfg파일 무게  -ext_output 동영상
 
 ## weights to tensorflow  to tflite
-cp /home/cheolgyu/workspace/gb-yolo/workspace/baram/project_3/backup/yolov4-tiny-3l_baram_crop_best.weights /home/cheolgyu/workspace/tensorflow-yolov4-tflite/data/
-무게 /home/cheolgyu/workspace/gb-yolo/workspace/baram/project_3/backup/yolov4-tiny-3l_baram_crop_best.weights
+cp /home/cheolgyu/workspace/gb-yolo/workspace/blackdesertm/project_1/backup/yolov4-tiny-3l_baram_crop_best.weights /home/cheolgyu/workspace/tensorflow-yolov4-tflite/data/
+무게 /home/cheolgyu/workspace/gb-yolo/workspace/blackdesertm/project_1/backup/yolov4-tiny-3l_baram_crop_best.weights
 
 yolov4-tiny-3l_baram_crop_best.weights
 
