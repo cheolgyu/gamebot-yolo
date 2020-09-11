@@ -1,0 +1,5 @@
+classes= 80
+train  = workspace/blackdesertm/project_1/train.txt
+valid = workspace/blackdesertm/project_1/valid.txt
+names = workspace/blackdesertm/project_1/data.names
+backup = workspace/blackdesertm/project_1/backup

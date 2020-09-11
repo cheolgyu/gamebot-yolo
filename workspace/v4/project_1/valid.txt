@@ -1,0 +1,9 @@
+/home/cheolgyu/workspace/gamebot-dataset/ds/ds_blackdesertm/img/blackdesertm_2020-09-09-07-52-28_00000719.jpg
+/home/cheolgyu/workspace/gamebot-dataset/ds/ds_blackdesertm/img/blackdesertm_2020-09-09-07-52-28_00000296.jpg
+/home/cheolgyu/workspace/gamebot-dataset/ds/ds_blackdesertm/img/blackdesertm_2020-09-09-07-52-28_00000402.jpg
+/home/cheolgyu/workspace/gamebot-dataset/ds/ds_blackdesertm/img/blackdesertm_2020-09-09-07-52-28_00000048.jpg
+/home/cheolgyu/workspace/gamebot-dataset/ds/ds_blackdesertm/img/blackdesertm_2020-09-09-07-52-28_00000447.jpg
+/home/cheolgyu/workspace/gamebot-dataset/ds/ds_blackdesertm/img/blackdesertm_2020-09-09-07-52-28_00000070.jpg
+/home/cheolgyu/workspace/gamebot-dataset/ds/ds_blackdesertm/img/blackdesertm_2020-09-09-07-52-28_00000900.jpg
+/home/cheolgyu/workspace/gamebot-dataset/ds/ds_blackdesertm/img/blackdesertm_2020-09-09-07-52-28_00000357.jpg
+/home/cheolgyu/workspace/gamebot-dataset/ds/ds_blackdesertm/img/blackdesertm_2020-09-09-07-52-28_00000814.jpg
