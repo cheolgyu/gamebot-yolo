@@ -1,0 +1,5 @@
+classes= 80
+train  = workspace/v4/project_4/train.txt
+valid = workspace/v4/project_4/valid.txt
+names = workspace/v4/project_4/data.names
+backup = workspace/v4/project_4/backup
