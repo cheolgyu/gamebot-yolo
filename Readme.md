@@ -57,9 +57,9 @@ backup_baram_2<= 현재진행중
 #### 처음
 cfg/yolov4-tiny-3l-v4-project_1.cfg
 cfg/yolov4-tiny-v4-project_1.cfg
-./darknet detector train workspace/v4/project_1/obj.data cfg/yolov4-tiny-3l-v4-project_1.cfg yolov4-tiny.conv.29  -map
+./darknet detector train workspace/v4/project_3/obj.data cfg/yolov4-tiny-v4-project_3.cfg yolov4-tiny.conv.29  -map
 #### 이어서
-./darknet detector train workspace/v4/project_1/obj.data cfg/yolov4-tiny-v4-project_1.cfg workspace/v4/project_1/backup/yolov4-tiny-v4-project_1_last.weights  -map 
+./darknet detector train workspace/v4/project_3/obj.data cfg/yolov4-tiny-v4-project_3.cfg workspace/v4/project_3/backup/yolov4-tiny-v4-project_3_last.weights  -map 
 #### test
 
 ./darknet detector test workspace/v4/project_1/obj.data  cfg/yolov4-tiny-v4-project_1.cfg  workspace/v4/project_1/backup/yolov4-tiny-v4-project_1_last.weights -thresh 0.25
