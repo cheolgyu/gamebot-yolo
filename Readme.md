@@ -64,10 +64,9 @@ cfg/yolov4-tiny-v4-project_1.cfg
 
 ./darknet_cpu detector test workspace/v4/project_3/obj.data  cfg/yolov4-tiny-v4-project_3.cfg  workspace/v4/project_3/backup/yolov4-tiny-v4-project_3_last.weights -thresh 0.25
 
-./darknet_cpu detector test workspace/v4/project_3/obj.data  cfg/yolov4-tiny-v4-project_3.cfg  workspace/v4/project_3/backup/yolov4-tiny-v4-project_3_last.weights -thresh 0.25
+./darknet_cpu detector test workspace/v4/project_3/obj.data  cfg/yolov4-tiny-3l-v4-project_3.cfg  workspace/v4/project_3/backup/yolov4-tiny-3l-v4-project_3_best.weights -thresh 0.01
 
-
-./darknet_cpu detector demo workspace/v4/project_3/obj.data cfg/yolov4-tiny-v4-project_3.cfg workspace/v4/project_3/backup/yolov4-tiny-v4-project_3_last.weights -ext_output /home/cheolgyu/다운로드/video_2.mp4
+./darknet_cpu detector demo workspace/v4/project_3/obj.data cfg/yolov4-tiny-v4-project_3.cfg workspace/v4/project_3/backup/yolov4-tiny-3l-v4-project_3_last.weights -ext_output /home/cheolgyu/다운로드/video_2.mp4
 
 
 ##### 사진
