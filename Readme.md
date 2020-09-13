@@ -79,13 +79,13 @@ cfg/yolov4-tiny-v4-project_1.cfg
 ./darknet detector demo 오브젝트.데이터 cfg파일 무게  -ext_output 동영상
 
 ## weights to tensorflow  to tflite
-cp /home/cheolgyu/workspace/gamebot/gamebot-yolo/workspace/v4/project_3/backup/yolov4-tiny-3l-v4-project_3_last.weights /home/cheolgyu/workspace/gamebot/tensorflow-yolov4-tflite/data/yolov4-tiny-3l-v4-project_3_last.weights
+cp /home/cheolgyu/workspace/gamebot/gamebot-yolo/workspace/v4/project_5/backup/yolov4-tiny-v4-project_5_last.weights /home/cheolgyu/workspace/gamebot/tensorflow-yolov4-tflite/data/yolov4-tiny-v4-project_5_last.weights
 무게 data/yolov4-tiny-v4-project_1_last.weights
 
 yolov4-tiny-3l_baram_crop_best.weights
 
-python save_model.py --weights data/yolov4-tiny-3l-v4-project_3_last.weights --output  ./checkpoints/v4/project_3_3l_416 --input_size 416 --model yolov4 --framework tflite --tiny
-python convert_tflite.py --weights ./checkpoints/v4/project_3_3l_416 --output ./checkpoints/v4/project_3_3l_416/detect-3l-416.tflite
+python save_model.py --weights data/yolov4-tiny-v4-project_5_last.weights --output ./checkpoints/v4/project_5-416 --input_size 416 --model yolov4 --framework tflite --tiny
+python convert_tflite.py --weights ./checkpoints/v4/project_5-416 --output ./checkpoints/v4/project_5-416/detect-416.tflite
 
 python save_model.py --weights data/yolov4-tiny-3l_baram_crop_best.weights --output  ./checkpoints/baram/project_3_832 --input_size 832 --model yolov4 --framework tflite --tiny
 
