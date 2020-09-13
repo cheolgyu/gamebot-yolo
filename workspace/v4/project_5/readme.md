@@ -17,8 +17,7 @@
 
 
 yolov4-tiny-3l-v4-project4_2
-./darknet detector train workspace/v4/project_5/obj.data cfg/yolov4-tiny-3l-v4-project_5_2.cfg workspace/v4/project_5/backup/yolov4-tiny-v4-project_5_last.weights  -map 
-
+./darknet detector train workspace/v4/project_5/obj.data cfg/yolov4-tiny-v4-project_5.cfg workspace/v4/project_5/backup/yolov4-tiny-v4-project_5_last.weights  -map 
 # test
 
 ./darknet detector test workspace/v4/project_5/obj.data cfg/yolov4-tiny-v4-project_5.cfg  workspace/v4/project_5/backup/yolov4-tiny-v4-project_5_last.weights -thresh 0.01
