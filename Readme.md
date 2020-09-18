@@ -27,7 +27,11 @@ voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
 
 
 # 프로젝트들
-1. baram 바람에나라
+1. v4
+2. gotgl: 왕좌의게임:윈터이즈커밍
+    project5 
+        project4 1000.weights에서 시작
+        해상도= width=960 height=480
 
 # opncv 설치
 opncv install
@@ -47,26 +51,30 @@ scripts/install_OpenCV4.sh
 ~/workspace/darknet/build.sh
 docker cp gb-yolo:/workspace/darknet/darknet ./darknet
 
-### bakcup폴더
-backup4 <= 바람출시
-backup4_1 <= 특정 객체만 더 인식 해서 가능한지 파악하려고 생성
-backup_baram_2<= 현재진행중
 
 
 ### 학습하기
 #### 처음
-cfg/yolov4-tiny-3l-v4-project_1.cfg
-cfg/yolov4-tiny-v4-project_1.cfg
-./darknet detector train workspace/v4/project_3/obj.data cfg/yolov4-tiny-v4-project_3.cfg yolov4-tiny.conv.29  -map
+cfg/yolov4-tiny-gotgl-project_1.cfg
+cfg/yolov4-tiny-gotgl-project_1.cfg
+./darknet detector train workspace/gotgl/project_1/obj.data cfg/yolov4-tiny-gotgl-project_1.cfg yolov4-tiny.conv.29  -map
+./darknet detector train workspace/gotgl/project_4/obj.data cfg/yolov4-tiny-gotgl-project_4-3l.cfg yolov4-tiny.conv.29  -map
 #### 이어서
-./darknet detector train workspace/v4/project_3/obj.data cfg/yolov4-tiny-v4-project_3.cfg workspace/v4/project_3/backup/yolov4-tiny-v4-project_3_last.weights  -map 
+./darknet detector train workspace/gotgl/project_5/obj.data cfg/yolov4-tiny-gotgl-project_5-3l.cfg workspace/gotgl/project_5/backup/yolov4-tiny-gotgl-project_4-3l_1000.weights  -map
+./darknet detector train workspace/gotgl/project_5/obj.data cfg/yolov4-tiny-gotgl-project_5-3l.cfg workspace/gotgl/project_5/backup/yolov4-tiny-gotgl-project_5-3l_last.weights  -map
+
 #### test
 
 ./darknet_cpu detector test workspace/v4/project_3/obj.data  cfg/yolov4-tiny-v4-project_3.cfg  workspace/v4/project_3/backup/yolov4-tiny-v4-project_3_last.weights -thresh 0.25
 
 ./darknet_cpu detector test workspace/v4/project_3/obj.data  cfg/yolov4-tiny-3l-v4-project_3.cfg  workspace/v4/project_3/backup/yolov4-tiny-3l-v4-project_3_best.weights -thresh 0.01
 
-./darknet_cpu detector demo workspace/v4/project_3/obj.data cfg/yolov4-tiny-v4-project_3.cfg workspace/v4/project_3/backup/yolov4-tiny-3l-v4-project_3_last.weights -ext_output /home/cheolgyu/다운로드/video_2.mp4
+yolov4-tiny-gotgl-project_5-3l_last
+
+./darknet detector demo workspace/gotgl/project_3/obj.data cfg/yolov4-tiny-gotgl-project_3-3l.cfg workspace/gotgl/project_3/backup/yolov4-tiny-gotgl-project_3-3l_best.weights -ext_output ~/workspace/gamebot/gamebot-dataset/gotgl_video_1.mp4
+./darknet detector demo workspace/gotgl/project_5/obj.data cfg/yolov4-tiny-gotgl-project_5-3l.cfg workspace/gotgl/project_5/backup/yolov4-tiny-gotgl-project_5-3l_last.weights -ext_output ~/workspace/gamebot/gamebot-dataset/gotgl_video_1.mp4
+
+./darknet detector map workspace/gotgl/project_1/obj.data cfg/yolov4-tiny-gotgl-project_1.cfg workspace/gotgl/project_1/backup/yolov4-tiny-gotgl-project_1_best.weights
 
 
 ##### 사진
