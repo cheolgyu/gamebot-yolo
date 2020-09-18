@@ -32,12 +32,19 @@ voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
     project5 
         project4 1000.weights에서 시작
         해상도= width=960 height=480
+        인식성공
     project6 
         project5 last.weights에서 시작 ( 약 2000 iteration)
         해상도 608 * 608 안되
         960 * 960 
     project5 +  https://github.com/Zellius/tensorflow-yolov4-tflite, https://github.com/hunglc007/tensorflow-yolov4-tflite/pull/163
-        --input_size 960x480 
+        --input_size 960x480  안드에서 인식률 떨어짐. 100퍼 ->20퍼 + 인식도 잘안됨. 
+    project6
+        960 * 960 로 더학습 
+    project7
+        960 * 960 ==> map 0%
+    
+
 
 # opncv 설치
 opncv install
@@ -64,7 +71,7 @@ docker cp gb-yolo:/workspace/darknet/darknet ./darknet
 cfg/yolov4-tiny-gotgl-project_1.cfg
 cfg/yolov4-tiny-gotgl-project_1.cfg
 ./darknet detector train workspace/gotgl/project_1/obj.data cfg/yolov4-tiny-gotgl-project_1.cfg yolov4-tiny.conv.29  -map
-./darknet detector train workspace/gotgl/project_4/obj.data cfg/yolov4-tiny-gotgl-project_4-3l.cfg yolov4-tiny.conv.29  -map
+./darknet detector train workspace/gotgl/project_7/obj.data cfg/yolov4-tiny-gotgl-project_7-3l.cfg yolov4-tiny.conv.29  -map
 #### 이어서
 ./darknet detector train workspace/gotgl/project_5/obj.data cfg/yolov4-tiny-gotgl-project_5-3l.cfg workspace/gotgl/project_5/backup/yolov4-tiny-gotgl-project_4-3l_1000.weights  -map
 ./darknet detector train workspace/gotgl/project_6/obj.data cfg/yolov4-tiny-gotgl-project_6-3l.cfg workspace/gotgl/project_6/backup/yolov4-tiny-gotgl-project_6-3l_last.weights  -map
@@ -107,27 +114,28 @@ python save_model.py --weights data/yolov4-tiny-3l_baram_crop_best.weights --out
 ## weights to tensorflow  to tflite  ==>2
 cp /home/cheolgyu/workspace/gamebot/gamebot-yolo/workspace/gotgl/project_5/backup/yolov4-tiny-gotgl-project_5-3l_last.weights /home/cheolgyu/workspace/gamebot/convert2/data/gotgl/yolov4-tiny-v4-project_5_last.weights
 
-python save_model.py --weights data/gotgl/yolov4-tiny-v4-project_5_last.weights --output ./checkpoints/gotgl/project_5 --input_size 960x480 --model yolov4 --framework tflite --tiny
+python save_model.py --weights data/gotgl/yolov4-tiny-v4-project_5_last.weights --output ./checkpoints/gotgl/project_5_480x960 --input_size 480x960 --model yolov4 --framework tflite --tiny
+python convert_tflite.py --weights ./checkpoints/gotgl/project_5_480x960 --output ./checkpoints/gotgl/project_5_480x960/detect.tflite
+python save_model.py --weights data/gotgl/yolov4-tiny-v4-project_5_last.weights --output ./checkpoints/gotgl/project_5_960x480 --input_size 960x480 --model yolov4 --framework tflite --tiny
+python convert_tflite.py --weights ./checkpoints/gotgl/project_5_960x480 --output ./checkpoints/gotgl/project_5_960x480/detect.tflite
+python detect.py --weights ./checkpoints/gotgl/project_5_480x960/detect.tflite --size 480x960 --model yolov4 --image ./gotgl_video_1_00000003.jpg --framework tflite
+python detect.py --weights ./checkpoints/gotgl/project_5_960x480/detect.tflite --size 960x480 --model yolov4 --image ./gotgl_video_1_00000003.jpg --framework tflite
 
+### 416x416
+python save_model.py --weights data/gotgl/yolov4-tiny-v4-project_5_last.weights --output ./checkpoints/gotgl/project_5_416x416 --input_size 416x416 --model yolov4 --framework tflite --tiny
+python convert_tflite.py --weights ./checkpoints/gotgl/project_5_416x416 --output ./checkpoints/gotgl/project_5_416x416/detect.tflite
+python detect.py --weights ./checkpoints/gotgl/project_5_416x416/detect.tflite --size 416x416 --model yolov4 --image ./gotgl_video_1_00000003.jpg --framework tflite
 
-python convert_tflite.py --weights ./checkpoints/baram/project_3_416 --output ./checkpoints/baram/project_3_416/detect-416.tflite
-python convert_tflite.py --weights ./checkpoints/baram/project_3_832 --output ./checkpoints/baram/project_3_832/detect-832.tflite
+### 608x608
+python save_model.py --weights data/gotgl/yolov4-tiny-v4-project_5_last.weights --output ./checkpoints/gotgl/project_5_608x608 --input_size 608x608 --model yolov4 --framework tflite --tiny
+python convert_tflite.py --weights ./checkpoints/gotgl/project_5_608x608 --output ./checkpoints/gotgl/project_5_608x608/detect.tflite
+python detect.py --weights ./checkpoints/gotgl/project_5_608x608/detect.tflite --size 608x608 --model yolov4 --image ./gotgl_video_1_00000003.jpg --framework tflite
 
+### 832x832
+python save_model.py --weights data/gotgl/yolov4-tiny-v4-project_5_last.weights --output ./checkpoints/gotgl/project_5_832x832 --input_size 832x832 --model yolov4 --framework tflite --tiny
+python convert_tflite.py --weights ./checkpoints/gotgl/project_5_832x832 --output ./checkpoints/gotgl/project_5_832x832/detect_832x832.tflite
+python detect.py --weights ./checkpoints/gotgl/project_5_832x832/detect.tflite --size 832x832 --model yolov4 --image ./gotgl_video_1_00000003.jpg --framework tflite
 
-python save_model.py --weights 무게 --output  완료파일 --input_size 416 --model yolov4 --framework tflite --tiny
-
-
-
-python convert_tflite.py --weights 완료파일 --output ./checkpoints/yolov4-tiny-3l-baram_crop_best-832.tflite
-
-python save_model.py --weights ./data/yolov4-tiny-3l_baram_crop_best.weights --output ./checkpoints/yolov4-tiny-3l-baram_crop_best-832 --input_size 832 --model yolov4 --framework tflite --tiny
-python convert_tflite.py --weights ./checkpoints/yolov4-tiny-3l-baram_crop_best-832 --output ./checkpoints/yolov4-tiny-3l-baram_crop_best-832.tflite
-
-python save_model.py --weights ./data/yolov4-tiny-3l_baram_crop_best.weights --output ./checkpoints/yolov4-tiny-3l-baram_crop_best-608 --input_size 608 --model yolov4 --framework tflite --tiny
-python convert_tflite.py --weights ./checkpoints/yolov4-tiny-3l-baram_crop_best-608 --output ./checkpoints/yolov4-tiny-3l-baram_crop_best-608.tflite
-
-python save_model.py --weights ./data/yolov4-tiny-3l_baram_crop_best.weights --output ./checkpoints/yolov4-tiny-3l-baram_crop_best-416 --input_size 416 --model yolov4 --framework tflite --tiny
-python convert_tflite.py --weights ./checkpoints/yolov4-tiny-3l-baram_crop_best-416 --output ./checkpoints/yolov4-tiny-3l-baram_crop_best-416.tflite
 
 
 # Run demo tflite model
