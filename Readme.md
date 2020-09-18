@@ -32,6 +32,12 @@ voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
     project5 
         project4 1000.weights에서 시작
         해상도= width=960 height=480
+    project6 
+        project5 last.weights에서 시작 ( 약 2000 iteration)
+        해상도 608 * 608 안되
+        960 * 960 
+    project5 +  https://github.com/Zellius/tensorflow-yolov4-tflite, https://github.com/hunglc007/tensorflow-yolov4-tflite/pull/163
+        --input_size 960x480 
 
 # opncv 설치
 opncv install
@@ -61,7 +67,7 @@ cfg/yolov4-tiny-gotgl-project_1.cfg
 ./darknet detector train workspace/gotgl/project_4/obj.data cfg/yolov4-tiny-gotgl-project_4-3l.cfg yolov4-tiny.conv.29  -map
 #### 이어서
 ./darknet detector train workspace/gotgl/project_5/obj.data cfg/yolov4-tiny-gotgl-project_5-3l.cfg workspace/gotgl/project_5/backup/yolov4-tiny-gotgl-project_4-3l_1000.weights  -map
-./darknet detector train workspace/gotgl/project_5/obj.data cfg/yolov4-tiny-gotgl-project_5-3l.cfg workspace/gotgl/project_5/backup/yolov4-tiny-gotgl-project_5-3l_last.weights  -map
+./darknet detector train workspace/gotgl/project_6/obj.data cfg/yolov4-tiny-gotgl-project_6-3l.cfg workspace/gotgl/project_6/backup/yolov4-tiny-gotgl-project_6-3l_last.weights  -map
 
 #### test
 
@@ -73,6 +79,7 @@ yolov4-tiny-gotgl-project_5-3l_last
 
 ./darknet detector demo workspace/gotgl/project_3/obj.data cfg/yolov4-tiny-gotgl-project_3-3l.cfg workspace/gotgl/project_3/backup/yolov4-tiny-gotgl-project_3-3l_best.weights -ext_output ~/workspace/gamebot/gamebot-dataset/gotgl_video_1.mp4
 ./darknet detector demo workspace/gotgl/project_5/obj.data cfg/yolov4-tiny-gotgl-project_5-3l.cfg workspace/gotgl/project_5/backup/yolov4-tiny-gotgl-project_5-3l_last.weights -ext_output ~/workspace/gamebot/gamebot-dataset/gotgl_video_1.mp4
+./darknet detector demo workspace/gotgl/project_6/obj.data cfg/yolov4-tiny-gotgl-project_6-3l.cfg workspace/gotgl/project_6/backup/yolov4-tiny-gotgl-project_6-3l_last.weights -ext_output ~/workspace/gamebot/gamebot-dataset/gotgl_video_1.mp4
 
 ./darknet detector map workspace/gotgl/project_1/obj.data cfg/yolov4-tiny-gotgl-project_1.cfg workspace/gotgl/project_1/backup/yolov4-tiny-gotgl-project_1_best.weights
 
@@ -87,15 +94,20 @@ yolov4-tiny-gotgl-project_5-3l_last
 ./darknet detector demo 오브젝트.데이터 cfg파일 무게  -ext_output 동영상
 
 ## weights to tensorflow  to tflite
-cp /home/cheolgyu/workspace/gamebot/gamebot-yolo/workspace/v4/project_5/backup/yolov4-tiny-v4-project_5_last.weights /home/cheolgyu/workspace/gamebot/tensorflow-yolov4-tflite/data/yolov4-tiny-v4-project_5_last.weights
+cp /home/cheolgyu/workspace/gamebot/gamebot-yolo/workspace/gotgl/project_5/backup/yolov4-tiny-gotgl-project_5-3l_last.weights /home/cheolgyu/workspace/gamebot/tensorflow-yolov4-tflite/data/gotgl/yolov4-tiny-v4-project_5_last.weights
 무게 data/yolov4-tiny-v4-project_1_last.weights
 
 yolov4-tiny-3l_baram_crop_best.weights
 
-python save_model.py --weights data/yolov4-tiny-v4-project_5_last.weights --output ./checkpoints/v4/project_5-416 --input_size 416 --model yolov4 --framework tflite --tiny
-python convert_tflite.py --weights ./checkpoints/v4/project_5-416 --output ./checkpoints/v4/project_5-416/detect-416.tflite
+python save_model.py --weights data/gotgl/yolov4-tiny-v4-project_5_last.weights --output ./checkpoints/gotgl/project_5 --input_size 960 --input_size_h 480 --model yolov4 --framework tflite --tiny
+python convert_tflite.py --weights ./checkpoints/gotgl/project_5 --output ./checkpoints/gotgl/project_5/detect.tflite
 
 python save_model.py --weights data/yolov4-tiny-3l_baram_crop_best.weights --output  ./checkpoints/baram/project_3_832 --input_size 832 --model yolov4 --framework tflite --tiny
+
+## weights to tensorflow  to tflite  ==>2
+cp /home/cheolgyu/workspace/gamebot/gamebot-yolo/workspace/gotgl/project_5/backup/yolov4-tiny-gotgl-project_5-3l_last.weights /home/cheolgyu/workspace/gamebot/convert2/data/gotgl/yolov4-tiny-v4-project_5_last.weights
+
+python save_model.py --weights data/gotgl/yolov4-tiny-v4-project_5_last.weights --output ./checkpoints/gotgl/project_5 --input_size 960x480 --model yolov4 --framework tflite --tiny
 
 
 python convert_tflite.py --weights ./checkpoints/baram/project_3_416 --output ./checkpoints/baram/project_3_416/detect-416.tflite
