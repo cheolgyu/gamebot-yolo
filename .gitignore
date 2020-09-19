@@ -11,4 +11,4 @@ darknet
 *.png
 *.weights
 yolo_mark
-
+yolov4.conv.137

@@ -62,7 +62,9 @@ voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
             ==>3l-832x832가 2~3초정도걸림. 그래서 project10은 아예 yolov4 로 테스트
             
             CUDA Error: out of memory:
-            
+    project11
+        tiny-3l  
+        960x480      
  ```           
 
 
@@ -88,8 +90,8 @@ docker cp gb-yolo:/workspace/darknet/darknet ./darknet
 
 ### 학습하기
 #### 처음
-cfg/gotgl_10.cfg
-./darknet detector train workspace/gotgl/project_10/obj.data cfg/gotgl_10.cfg yolov4.conv.137  -map
+cfg/gotgl_11.cfg
+./darknet detector train workspace/gotgl/project_11/obj.data cfg/gotgl_11.cfg yolov4-tiny.conv.29  -map
 #### 이어서
 ./darknet detector train workspace/gotgl/project_10/obj.data cfg/gotgl_10.cfg workspace/gotgl/project_8/backup/yolov4-tiny-gotgl-project_5-3l_last.weights  -map
 
