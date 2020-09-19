@@ -68,7 +68,7 @@ voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
         map 100% 나와서 종료 tflite test에서는 정확도가 낮음 
     project12
         tiny-3l 처음부터  
-        832x832
+        960x960 : 1696x954 픽셀 이미지
  ```           
 
 
