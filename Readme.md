@@ -95,7 +95,7 @@ cfg/yolov4-tiny-gotgl-project_1.cfg
 
 yolov4-tiny-gotgl-project_5-3l_last
 
-./darknet detector demo workspace/gotgl/project_8/obj.data cfg/yolov4-tiny-gotgl-project_8-3l.cfg workspace/gotgl/project_8/backup/yolov4-tiny-gotgl-project_8-3l_last.weights -ext_output /home/cheolgyu/다운로드/gotgl_video_1.mp4
+./darknet detector demo workspace/gotgl/project_9/obj.data cfg/yolov4-tiny-gotgl-project_9-3l.cfg workspace/gotgl/project_9/backup/yolov4-tiny-gotgl-project_9-3l_last.weights -ext_output /home/cheolgyu/다운로드/gotgl_video_2.mp4
 
 
 ./darknet detector map workspace/gotgl/project_1/obj.data cfg/yolov4-tiny-gotgl-project_1.cfg workspace/gotgl/project_1/backup/yolov4-tiny-gotgl-project_1_best.weights
@@ -111,10 +111,9 @@ yolov4-tiny-gotgl-project_5-3l_last
 ./darknet detector demo 오브젝트.데이터 cfg파일 무게  -ext_output 동영상
 
 ## weights to tensorflow  to tflite
-cp /home/cheolgyu/workspace/gamebot/gamebot-yolo/workspace/gotgl/project_8/backup/yolov4-tiny-gotgl-project_8-3l_last.weights /home/cheolgyu/workspace/gamebot/tensorflow-yolov4-tflite/data/gotgl/yolov4-tiny-v4-project_8_last.weights
+cp /home/cheolgyu/workspace/gamebot/gamebot-yolo/workspace/gotgl/project_9/backup/yolov4-tiny-gotgl-project_9-3l_last.weights /home/cheolgyu/workspace/gamebot/convert2/data/gotgl/yolov4-tiny-v4-project_9_last.weights
 무게 data/yolov4-tiny-v4-project_1_last.weights
 
-yolov4-tiny-3l_baram_crop_best.weights
 
 python save_model.py --weights data/gotgl/yolov4-tiny-v4-project_5_last.weights --output ./checkpoints/gotgl/project_5 --input_size 960 --input_size_h 480 --model yolov4 --framework tflite --tiny
 python convert_tflite.py --weights ./checkpoints/gotgl/project_5 --output ./checkpoints/gotgl/project_5/detect.tflite
@@ -135,8 +134,8 @@ python convert_tflite.py --weights ./checkpoints/gotgl/project_5_608x608 --outpu
 python detect.py --weights ./checkpoints/gotgl/project_5_608x608/detect.tflite --size 608x608 --model yolov4 --image ./gotgl_video_1_00000003.jpg --framework tflite
 
 ### 832x832
-python save_model.py --weights data/gotgl/yolov4-tiny-v4-project_8_last.weights --output ./checkpoints/gotgl/project_8_832x832 --input_size 832x832 --model yolov4 --framework tflite --tiny
-python convert_tflite.py --weights ./checkpoints/gotgl/project_8_832x832 --output ./checkpoints/gotgl/project_8_832x832/detect_832x832.tflite
+python save_model.py --weights data/gotgl/yolov4-tiny-v4-project_9_last.weights --output ./checkpoints/gotgl/project_9_832x832 --input_size 832x832 --model yolov4 --framework tflite --tiny
+python convert_tflite.py --weights ./checkpoints/gotgl/project_9_832x832 --output ./checkpoints/gotgl/project_9_832x832/detect_832x832.tflite
 python detect.py --weights ./checkpoints/gotgl/project_8_832x832/detect_832x832.tflite --size 832x832 --model yolov4 --image ./gotgl_video_1_00000003.jpg --framework tflite
 
 
