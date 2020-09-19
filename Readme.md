@@ -68,7 +68,7 @@ voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
         map 100% 나와서 종료 tflite test에서는 정확도가 낮음 
     project12
         tiny-3l 처음부터  
-        960x960
+        832x832
  ```           
 
 
@@ -95,7 +95,7 @@ docker cp gb-yolo:/workspace/darknet/darknet ./darknet
 ### 학습하기
 #### 처음
 cfg/gotgl_11.cfg
-./darknet detector train workspace/gotgl/project_11/obj.data cfg/gotgl_11.cfg yolov4-tiny.conv.29  -map
+./darknet detector train workspace/gotgl/project_12/obj.data cfg/gotgl_12.cfg yolov4-tiny.conv.29  -map
 #### 이어서
 ./darknet detector train workspace/gotgl/project_11/obj.data cfg/gotgl_11.cfg workspace/gotgl/project_11/backup/gotgl_11_last.weights  -map
 

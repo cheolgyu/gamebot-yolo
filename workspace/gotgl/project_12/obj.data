@@ -1,0 +1,5 @@
+classes= 9
+train  = workspace/gotgl/project_12/train.txt
+valid = workspace/gotgl/project_12/valid.txt
+names = workspace/gotgl/project_12/data.names
+backup = workspace/gotgl/project_12/backup
