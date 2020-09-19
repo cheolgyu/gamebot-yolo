@@ -29,6 +29,7 @@ voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
 # 프로젝트들
 1. v4
 2. gotgl: 왕좌의게임:윈터이즈커밍
+```
     project5 
         project4 1000.weights에서 시작
         해상도= width=960 height=480
@@ -49,12 +50,18 @@ voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
             일어나기 
         project5_last로 시작 ==> nan 나옴
         처음부터 == > 잘됨.
-    project9
+    project9 832x832 출시, 추론하는데 2~3초걸림
         추가
             확인
             일어나기 + 수령+도움 
         처음부터 
-
+    project10 
+        필요
+            수정: 일어나기-상태바:축소 -> 피통 빨간부분만 인식 후에 없으면 0.0 좌표클릭 이벤트발생 
+            추가: 자원수집 : 이슈 수집 버튼이 너무작음 832x832해도 작음 자원외의 비슷한 아이콘도 존재함. 
+            ==>3l-832x832가 2~3초정도걸림. 그래서 project10은 아예 yolov4 로 테스트
+            
+ ```           
 
 
 # opncv 설치
@@ -79,13 +86,11 @@ docker cp gb-yolo:/workspace/darknet/darknet ./darknet
 
 ### 학습하기
 #### 처음
-cfg/yolov4-tiny-gotgl-project_1.cfg
-cfg/yolov4-tiny-gotgl-project_1.cfg
-./darknet detector train workspace/gotgl/project_9/obj.data cfg/yolov4-tiny-gotgl-project_9-3l.cfg yolov4-tiny.conv.29  -map
-./darknet detector train workspace/gotgl/project_7/obj.data cfg/yolov4-tiny-gotgl-project_7-3l.cfg yolov4-tiny.conv.29  -map
+cfg/gotgl_10
+./darknet detector train workspace/gotgl/project_10/obj.data cfg/gotgl_10 yolov4.conv.137  -map
 #### 이어서
-./darknet detector train workspace/gotgl/project_8/obj.data cfg/yolov4-tiny-gotgl-project_8-3l.cfg workspace/gotgl/project_8/backup/yolov4-tiny-gotgl-project_5-3l_last.weights  -map
-./darknet detector train workspace/gotgl/project_8/obj.data cfg/yolov4-tiny-gotgl-project_8-3l.cfg workspace/gotgl/project_8/backup/yolov4-tiny-gotgl-project_8-3l_last.weights  -map
+./darknet detector train workspace/gotgl/project_10/obj.data cfg/gotgl_10.cfg workspace/gotgl/project_8/backup/yolov4-tiny-gotgl-project_5-3l_last.weights  -map
+
 
 #### test
 
