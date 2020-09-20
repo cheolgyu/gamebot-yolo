@@ -68,7 +68,8 @@ voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
         map 100% 나와서 종료 tflite test에서는 정확도가 낮음 
     project12
         tiny-3l 처음부터  
-        960x960 : 1696x954 픽셀 이미지
+        960x960 학습 : 1696x954 픽셀 이미지
+        map 0 
  ```           
 
 
@@ -108,7 +109,7 @@ cfg/gotgl_11.cfg
 
 yolov4-tiny-gotgl-project_5-3l_last
 
-./darknet detector demo workspace/gotgl/project_9/obj.data cfg/yolov4-tiny-gotgl-project_9-3l.cfg workspace/gotgl/project_9/backup/yolov4-tiny-gotgl-project_9-3l_last.weights -ext_output /home/cheolgyu/다운로드/gotgl_video_2.mp4
+./darknet detector demo workspace/gotgl/project_12/obj.data cfg/gotgl_12.cfg workspace/gotgl/project_12/backup/gotgl_12_last.weights -ext_output /home/cheolgyu/다운로드/gotgl_video_4.mp4
 ./darknet detector demo workspace/gotgl/project_11/obj.data cfg/gotgl_11.cfg workspace/gotgl/project_11/backup/gotgl_11_last.weights  -ext_output /home/cheolgyu/다운로드/gotgl_video_5.mp4
 
 ./darknet detector map workspace/gotgl/project_1/obj.data cfg/yolov4-tiny-gotgl-project_1.cfg workspace/gotgl/project_1/backup/yolov4-tiny-gotgl-project_1_best.weights
