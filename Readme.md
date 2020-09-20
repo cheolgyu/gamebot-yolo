@@ -143,43 +143,43 @@ yolov4-tiny-gotgl-project_5-3l_last
 ## weights to tensorflow  to tflite
 
 ### 480
-python save_model.py --weights data/gotgl/gotgl_14_best.weights --output ./checkpoints/gotgl_14_best-480 --input_size 480 --model yolov4 --framework tflite --tiny
+python save_model.py --weights data/gotgl/gotgl_14_last.weights --output ./checkpoints/gotgl_14_last-480 --input_size 480 --model yolov4 --framework tflite --tiny
 
-python convert_tflite.py --weights ./checkpoints/gotgl_14_best-480 --output ./checkpoints/gotgl_14_best-480/gotgl_14_best-480.tflite
+python convert_tflite.py --weights ./checkpoints/gotgl_14_last-480 --output ./checkpoints/gotgl_14_last-480/gotgl_14_last-480.tflite
 
-python detect.py --weights ./checkpoints/gotgl_14_best-480 --size 480 --model yolov4 --image ./gotgl_video_8_00000078.jpg --tiny
+python detect.py --weights ./checkpoints/gotgl_14_last-480 --size 480 --model yolov4 --image ./gotgl_video_8_00000078.jpg --tiny
 
-python detect.py --weights ./checkpoints/gotgl_14_best-480/gotgl_14_best-480.tflite --size 480 --model yolov4 --image ./gotgl_video_8_00000078.jpg --framework tflite
+python detect.py --weights ./checkpoints/gotgl_14_last-480/gotgl_14_last-480.tflite --size 480 --model yolov4 --image ./gotgl_video_8_00000078.jpg --framework tflite
 
 
 ### 832
-python save_model.py --weights data/gotgl/gotgl_14_best.weights --output ./checkpoints/gotgl_14_best-832 --input_size 832 --model yolov4 --framework tflite --tiny
+python save_model.py --weights data/gotgl/gotgl_14_last.weights --output ./checkpoints/gotgl_14_last-832 --input_size 832 --model yolov4 --framework tflite --tiny
 
-python convert_tflite.py --weights ./checkpoints/gotgl_14_best-832 --output ./checkpoints/gotgl_14_best-832/gotgl_14_best-832.tflite
+python convert_tflite.py --weights ./checkpoints/gotgl_14_last-832 --output ./checkpoints/gotgl_14_last-832/gotgl_14_last-832.tflite
 
-python detect.py --weights ./checkpoints/gotgl_14_best-832 --size 832 --model yolov4 --image ./gotgl_video_8_00000078.jpg --tiny
+python detect.py --weights ./checkpoints/gotgl_14_last-832 --size 832 --model yolov4 --image ./gotgl_video_8_00000078.jpg --tiny
 
-python detect.py --weights ./checkpoints/gotgl_14_best-832/gotgl_14_best-832.tflite --size 832 --model yolov4 --image ./gotgl_video_8_00000078.jpg --framework tflite
+python detect.py --weights ./checkpoints/gotgl_14_last-832/gotgl_14_last-832.tflite --size 832 --model yolov4 --image ./gotgl_video_8_00000078.jpg --framework tflite
 
 
 ### 960
-python save_model.py --weights data/gotgl/gotgl_14_best.weights --output ./checkpoints/gotgl_14_best-960 --input_size 960 --model yolov4 --framework tflite --tiny
+python save_model.py --weights data/gotgl/gotgl_14_last.weights --output ./checkpoints/gotgl_14_last-960 --input_size 960 --model yolov4 --framework tflite --tiny
 
-python convert_tflite.py --weights ./checkpoints/gotgl_14_best-960 --output ./checkpoints/gotgl_14_best-960/gotgl_14_best-960.tflite
+python convert_tflite.py --weights ./checkpoints/gotgl_14_last-960 --output ./checkpoints/gotgl_14_last-960/gotgl_14_last-960.tflite
 
-python detect.py --weights ./checkpoints/gotgl_14_best-960 --size 960 --model yolov4 --image ./gotgl_video_8_00000078.jpg --tiny
+python detect.py --weights ./checkpoints/gotgl_14_last-960 --size 960 --model yolov4 --image ./gotgl_video_8_00000078.jpg --tiny
 
-python detect.py --weights ./checkpoints/gotgl_14_best-960/gotgl_14_best-960.tflite --size 960 --model yolov4 --image ./gotgl_video_8_00000078.jpg --framework tflite
+python detect.py --weights ./checkpoints/gotgl_14_last-960/gotgl_14_last-960.tflite --size 960 --model yolov4 --image ./gotgl_video_8_00000078.jpg --framework tflite
 
 
 ### 1280
-python save_model.py --weights data/gotgl/gotgl_14_best.weights --output ./checkpoints/gotgl_14_best-1280 --input_size 1280 --model yolov4 --framework tflite --tiny
+python save_model.py --weights data/gotgl/gotgl_14_last.weights --output ./checkpoints/gotgl_14_last-1280 --input_size 1280 --model yolov4 --framework tflite --tiny
 
-python convert_tflite.py --weights ./checkpoints/gotgl_14_best-1280 --output ./checkpoints/gotgl_14_best-1280/gotgl_14_best-1280.tflite
+python convert_tflite.py --weights ./checkpoints/gotgl_14_last-1280 --output ./checkpoints/gotgl_14_last-1280/gotgl_14_last-1280.tflite
 
-python detect.py --weights ./checkpoints/gotgl_14_best-1280 --size 1280 --model yolov4 --image ./gotgl_video_8_00000078.jpg --tiny
+python detect.py --weights ./checkpoints/gotgl_14_last-1280 --size 1280 --model yolov4 --image ./gotgl_video_8_00000078.jpg --tiny
 
-python detect.py --weights ./checkpoints/gotgl_14_best-1280/gotgl_14_best-1280.tflite --size 1280 --model yolov4 --image ./gotgl_video_8_00000078.jpg --framework tflite
+python detect.py --weights ./checkpoints/gotgl_14_last-1280/gotgl_14_last-1280.tflite --size 1280 --model yolov4 --image ./gotgl_video_8_00000078.jpg --framework tflite
 
 
 ## weights to tensorflow  to tflite  ==>2
