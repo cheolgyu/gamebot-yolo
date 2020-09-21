@@ -142,15 +142,13 @@ docker cp gb-yolo:/workspace/darknet/darknet ./darknet
 ./darknet detector train workspace/gotgl/project_15/obj.data cfg/gotgl_15.cfg workspace/gotgl/project_15/backup/gotgl_14_last.weights  -map
 
 #### test
+./darknet detector demo workspace/gotgl/project_15/obj.data cfg/gotgl_15.cfg workspace/gotgl/project_15/backup/gotgl_15_best.weights  -ext_output /home/cheolgyu/다운로드/gotgl_video_2.mp4
 
 ./darknet_cpu detector test workspace/v4/project_3/obj.data  cfg/yolov4-tiny-v4-project_3.cfg  workspace/v4/project_3/backup/yolov4-tiny-v4-project_3_last.weights -thresh 0.25
 
 ./darknet_cpu detector test workspace/v4/project_3/obj.data  cfg/yolov4-tiny-3l-v4-project_3.cfg  workspace/v4/project_3/backup/yolov4-tiny-3l-v4-project_3_best.weights -thresh 0.01
 
-yolov4-tiny-gotgl-project_5-3l_last
-
 ./darknet detector demo workspace/gotgl/project_12/obj.data cfg/gotgl_12.cfg workspace/gotgl/project_12/backup/gotgl_12_last.weights -ext_output /home/cheolgyu/다운로드/gotgl_video_4.mp4
-./darknet detector demo workspace/gotgl/project_11/obj.data cfg/gotgl_11.cfg workspace/gotgl/project_11/backup/gotgl_11_last.weights  -ext_output /home/cheolgyu/다운로드/gotgl_video_5.mp4
 
 ./darknet detector map workspace/gotgl/project_1/obj.data cfg/yolov4-tiny-gotgl-project_1.cfg workspace/gotgl/project_1/backup/yolov4-tiny-gotgl-project_1_best.weights
 
