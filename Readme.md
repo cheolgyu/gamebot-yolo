@@ -100,17 +100,21 @@ voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
             8. 음식
             9. 창닫기
         dataset= 
-            v8 = 수령,도움,할리스,식량,목재,석재,철광,음식
-            v9 = 창닫기
-            수령_도움_할리스_독사진
-            창닫기
-            식량_목재_석재_철과_음식_확대사진 < - 손으로 라벨링 !! 
-            수령x_t1
-            수령x_t2
+            v8 = 수령,도움,할리스,식량,목재,석재,철광,음식 - 350
+            v9 = 창닫기 - 153
+            수령_도움_할리스_독사진 - 442
+            식량_목재_석재_철과_음식_확대사진 < - 손으로 라벨링 !!  - 31
+            수령x_t1 - 14
+            수령x_t2 - 69
         + 창닫기 추가
         + 수령 아이콘 모양의 하단 부분으로 라벨링 변경.
-        수령아닌 데이터세트 추가 후 인식여부에 따라 수령가능이 아닌 상태로 학습 후 또 테스트해보자
+        
         480x480 으로학습 960으로 tflite
+
+        1. 수령가능 하지 않는상태는 라벨링 하지 않고 테스트 실패면? -> 잘되네.
+            1-1. 수령가능 하지 않는 상태를 라벨링하여 학습한다
+            1-2. 수령가능 하지 않는 상태의 이미지 수를 많게하고 나머진 10개 씩만 하고 테스트
+        
 
 
  ```           
@@ -144,7 +148,7 @@ docker cp gb-yolo:/workspace/darknet/darknet ./darknet
 ./darknet detector train workspace/gotgl/project_15/obj.data cfg/gotgl_15.cfg workspace/gotgl/project_15/backup/gotgl_15_last.weights  -map
 
 #### test
-./darknet detector demo workspace/gotgl/project_15/obj.data cfg/gotgl_15.cfg workspace/gotgl/project_15/backup/gotgl_15_best.weights  -ext_output /home/cheolgyu/다운로드/gotgl_video_2.mp4
+./darknet detector demo workspace/gotgl/project_15/obj.data cfg/gotgl_15.cfg workspace/gotgl/project_15/backup/gotgl_15_last.weights  -ext_output /home/cheolgyu/다운로드/gotgl_video_2.mp4
 
 ./darknet_cpu detector test workspace/v4/project_3/obj.data  cfg/yolov4-tiny-v4-project_3.cfg  workspace/v4/project_3/backup/yolov4-tiny-v4-project_3_last.weights -thresh 0.25
 
@@ -187,15 +191,15 @@ python detect.py --weights ./checkpoints/gotgl_14_last-832/gotgl_14_last-832.tfl
 
 
 ### 960
-python save_model.py --weights data/gotgl/gotgl_14_last.weights --output ./checkpoints/gotgl_14_last-960 --input_size 960 --model yolov4 --framework tflite --tiny
+python save_model.py --weights data/gotgl/gotgl_15_last.weights --output ./checkpoints/gotgl_15_last-960 --input_size 960 --model yolov4 --framework tflite --tiny
 
-python convert_tflite.py --weights ./checkpoints/gotgl_14_last-960 --output ./checkpoints/gotgl_14_last-960/gotgl_14_last-960.tflite
+python convert_tflite.py --weights ./checkpoints/gotgl_15_last-960 --output ./checkpoints/gotgl_15_last-960/gotgl_15_last-960.tflite
 
-python detect.py --weights ./checkpoints/gotgl_14_last-960 --size 960 --model yolov4 --image ./gotgl_video_8_00000078.jpg --tiny
+python detect.py --weights ./checkpoints/gotgl_15_last-960 --size 960 --model yolov4 --image ./gotgl_video_8_00000078.jpg --tiny
 
-python detect.py --weights ./checkpoints/gotgl_14_last-960/gotgl_14_last-960.tflite --size 960 --model yolov4 --image ./gotgl_video_8_00000078.jpg --framework tflite
-
-
+python detect.py --weights ./checkpoints/gotgl_15_last-960/gotgl_15_last-960.tflite --size 960 --model yolov4 --image ./gotgl_video_5_00000292.jpg --framework tflite
+gotgl_video_8_00000078
+gotgl_video_5_00000292
 ### 1280
 python save_model.py --weights data/gotgl/gotgl_14_last.weights --output ./checkpoints/gotgl_14_last-1280 --input_size 1280 --model yolov4 --framework tflite --tiny
 
