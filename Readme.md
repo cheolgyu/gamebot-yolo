@@ -138,8 +138,8 @@ docker cp gb-yolo:/workspace/darknet/darknet ./darknet
 #### 처음
 ./darknet detector train workspace/gotgl/project_15/obj.data cfg/gotgl_15.cfg yolov4-tiny.conv.29  -map
 #### 이어서
-./darknet detector train workspace/gotgl/project_15/obj.data cfg/gotgl_15.cfg workspace/gotgl/project_15/backup/gotgl_14_last.weights  -show_imgs
-./darknet detector train workspace/gotgl/project_15/obj.data cfg/gotgl_15.cfg workspace/gotgl/project_15/backup/gotgl_14_last.weights  -map
+./darknet detector train workspace/gotgl/project_15/obj.data cfg/gotgl_15.cfg workspace/gotgl/project_15/backup/gotgl_15_last.weights  -show_imgs
+./darknet detector train workspace/gotgl/project_15/obj.data cfg/gotgl_15.cfg workspace/gotgl/project_15/backup/gotgl_15_last.weights  -map
 
 #### test
 ./darknet detector demo workspace/gotgl/project_15/obj.data cfg/gotgl_15.cfg workspace/gotgl/project_15/backup/gotgl_15_best.weights  -ext_output /home/cheolgyu/다운로드/gotgl_video_2.mp4
