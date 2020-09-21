@@ -87,6 +87,30 @@ voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
         480x480 으로학습 960으로 tflite
         ./darknet detector demo workspace/gotgl/project_14/obj.data cfg/gotgl_14.cfg workspace/gotgl/project_14/backup/gotgl_14_last.weights  -ext_output /home/cheolgyu/다운로드/gotgl_video_1.mp4
 
+    project15
+        라벨링
+            0. 수령 - > 이미지 하단 위주로 다시라벨링.
+            1. 도움
+            2. 수령확인
+            3. 상태바- > 할리스아이콘으로
+            4. 식량
+            5. 목재
+            6. 석재
+            7. 철광
+            8. 음식
+            9. 창닫기
+        dataset= 
+            v8 = 수령,도움,할리스,식량,목재,석재,철광,음식
+            v9 = 창닫기
+            수령_도움_할리스_독사진
+            창닫기
+            식량_목재_석재_철과_음식_확대사진 < - 손으로 라벨링 !! 
+        + 창닫기 추가
+        + 수령 아이콘 모양의 하단 부분으로 라벨링 변경.
+        
+        480x480 으로학습 960으로 tflite
+
+
  ```           
 
 
@@ -112,10 +136,10 @@ docker cp gb-yolo:/workspace/darknet/darknet ./darknet
 
 ### 학습하기
 #### 처음
-./darknet detector train workspace/gotgl/project_14/obj.data cfg/gotgl_14.cfg yolov4-tiny.conv.29  -map
+./darknet detector train workspace/gotgl/project_15/obj.data cfg/gotgl_15.cfg yolov4-tiny.conv.29  -map
 #### 이어서
-./darknet detector train workspace/gotgl/project_14/obj.data cfg/gotgl_14.cfg workspace/gotgl/project_14/backup/gotgl_14_last.weights  -show_imgs
-./darknet detector train workspace/gotgl/project_14/obj.data cfg/gotgl_14.cfg workspace/gotgl/project_14/backup/gotgl_14_last.weights  -map
+./darknet detector train workspace/gotgl/project_15/obj.data cfg/gotgl_15.cfg workspace/gotgl/project_15/backup/gotgl_14_last.weights  -show_imgs
+./darknet detector train workspace/gotgl/project_15/obj.data cfg/gotgl_15.cfg workspace/gotgl/project_15/backup/gotgl_14_last.weights  -map
 
 #### test
 
