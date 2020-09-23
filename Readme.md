@@ -118,7 +118,21 @@ voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
 
 
  ```           
+3. fivestars 파이브스타즈
+    ```
+    yolov4-tiny.cfg
+    classes= 8
+    0. 쾌시작
+    1. 쾌정보-확인
+    2. 전투시작
+    3. 월드맵
+    4. 건너뛰기
+    5. 쾌스트보상-확인
+    6. 렙업확인
+    7. 컨텐츠오픈 확인
+    
 
+    ```
 
 # opncv 설치
 opncv install
@@ -142,7 +156,7 @@ docker cp gb-yolo:/workspace/darknet/darknet ./darknet
 
 ### 학습하기
 #### 처음
-./darknet detector train workspace/gotgl/project_15/obj.data cfg/gotgl_15.cfg yolov4-tiny.conv.29  -map
+./darknet detector train workspace/fivestars/project_1/obj.data cfg/fivestars_1.cfg yolov4-tiny.conv.29  -map
 #### 이어서
 ./darknet detector train workspace/gotgl/project_15/obj.data cfg/gotgl_15.cfg workspace/gotgl/project_15/backup/gotgl_15_last.weights  -show_imgs
 ./darknet detector train workspace/gotgl/project_15/obj.data cfg/gotgl_15.cfg workspace/gotgl/project_15/backup/gotgl_15_last.weights  -map

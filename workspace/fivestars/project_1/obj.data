@@ -1,0 +1,5 @@
+classes= 8
+train  = workspace/fivestars/project_1/train.txt
+valid = workspace/fivestars/project_1/valid.txt
+names = workspace/fivestars/project_1/data.names
+backup = workspace/fivestars/project_1/backup
