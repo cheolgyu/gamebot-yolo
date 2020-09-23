@@ -158,17 +158,17 @@ docker cp gb-yolo:/workspace/darknet/darknet ./darknet
 #### 처음
 ./darknet detector train workspace/fivestars/project_1/obj.data cfg/fivestars_1.cfg yolov4-tiny.conv.29  -map
 #### 이어서
-./darknet detector train workspace/gotgl/project_15/obj.data cfg/gotgl_15.cfg workspace/gotgl/project_15/backup/gotgl_15_last.weights  -show_imgs
-./darknet detector train workspace/gotgl/project_15/obj.data cfg/gotgl_15.cfg workspace/gotgl/project_15/backup/gotgl_15_last.weights  -map
-
+./darknet detector train workspace/fivestars/project_1/obj.data cfg/fivestars_1.cfg workspace/fivestars/project_1/backup/fivestars_1_last.weights  -show_imgs
+./darknet detector train workspace/fivestars/project_1/obj.data cfg/fivestars_1.cfg workspace/fivestars/project_1/backup/fivestars_1_last.weights  -map
+./darknet detector map workspace/fivestars/project_1/obj.data cfg/fivestars_1.cfg workspace/fivestars/project_1/backup/fivestars_1_last.weights
 #### test
 ./darknet detector demo workspace/gotgl/project_15/obj.data cfg/gotgl_15.cfg workspace/gotgl/project_15/backup/gotgl_15_last.weights  -ext_output /home/cheolgyu/다운로드/gotgl_video_2.mp4
 
-./darknet_cpu detector test workspace/v4/project_3/obj.data  cfg/yolov4-tiny-v4-project_3.cfg  workspace/v4/project_3/backup/yolov4-tiny-v4-project_3_last.weights -thresh 0.25
+./darknet detector test workspace/fivestars/project_1/obj.data   cfg/fivestars_1.cfg  workspace/fivestars/project_1/backup/fivestars_1_last.weights  -thresh 0.25
 
 ./darknet_cpu detector test workspace/v4/project_3/obj.data  cfg/yolov4-tiny-3l-v4-project_3.cfg  workspace/v4/project_3/backup/yolov4-tiny-3l-v4-project_3_best.weights -thresh 0.01
 
-./darknet detector demo workspace/gotgl/project_12/obj.data cfg/gotgl_12.cfg workspace/gotgl/project_12/backup/gotgl_12_last.weights -ext_output /home/cheolgyu/다운로드/gotgl_video_4.mp4
+./darknet detector demo workspace/fivestars/project_1/obj.data cfg/fivestars_1.cfg workspace/fivestars/project_1/backup/fivestars_1_last.weights -ext_output /home/cheolgyu/다운로드/fivestars_v8.mp4
 
 ./darknet detector map workspace/gotgl/project_1/obj.data cfg/yolov4-tiny-gotgl-project_1.cfg workspace/gotgl/project_1/backup/yolov4-tiny-gotgl-project_1_best.weights
 
@@ -184,14 +184,14 @@ docker cp gb-yolo:/workspace/darknet/darknet ./darknet
 
 ## weights to tensorflow  to tflite
 
-### 480
-python save_model.py --weights data/gotgl/gotgl_14_last.weights --output ./checkpoints/gotgl_14_last-480 --input_size 480 --model yolov4 --framework tflite --tiny
+### 416
+python save_model.py --weights data/fivestars/fivestars_1_last.weights --output ./checkpoints/fivestars_1_last-416 --input_size 416 --model yolov4 --framework tflite --tiny
 
-python convert_tflite.py --weights ./checkpoints/gotgl_14_last-480 --output ./checkpoints/gotgl_14_last-480/gotgl_14_last-480.tflite
+python convert_tflite.py --weights ./checkpoints/fivestars_1_last-416 --output ./checkpoints/fivestars_1_last-416/fivestars_1_last-416.tflite
 
-python detect.py --weights ./checkpoints/gotgl_14_last-480 --size 480 --model yolov4 --image ./gotgl_video_8_00000078.jpg --tiny
+python detect.py --weights ./checkpoints/fivestars_1_last-416 --size 416 --model yolov4 --image ./fivestars_video_8_00000078.jpg --tiny
 
-python detect.py --weights ./checkpoints/gotgl_14_last-480/gotgl_14_last-480.tflite --size 480 --model yolov4 --image ./gotgl_video_8_00000078.jpg --framework tflite
+python detect.py --weights ./checkpoints/fivestars_1_last-416/fivestars_1_last-416.tflite --size 416 --model yolov4 --image ./fivestars_v6_00000063.jpg --framework tflite
 
 
 ### 832
