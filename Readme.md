@@ -115,6 +115,22 @@ voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
             1-1. 수령가능 하지 않는 상태를 라벨링하여 학습한다
             1-2. 수령가능 하지 않는 상태의 이미지 수를 많게하고 나머진 10개 씩만 하고 테스트
         
+    project16
+        카메라 확대 로 416 가자 .
+        + dataset 10~19
+        확대한것 사용
+        0. 수령 
+        1. 수령x5
+        2. 수령확인
+        3. 도움
+        4. 할리스
+        5. 식량
+        6. 목재
+        7. 석재
+        8. 철광
+        9. 음식
+        10. 창닫기
+        fivestars_1.cfg 복사
 
 
  ```           
@@ -156,7 +172,7 @@ docker cp gb-yolo:/workspace/darknet/darknet ./darknet
 
 ### 학습하기
 #### 처음
-./darknet detector train workspace/fivestars/project_1/obj.data cfg/fivestars_1.cfg yolov4-tiny.conv.29  -map
+./darknet detector train workspace/gotgl/project_16/obj.data cfg/gotgl_16.cfg yolov4-tiny.conv.29  -map
 #### 이어서
 ./darknet detector train workspace/fivestars/project_1/obj.data cfg/fivestars_1.cfg workspace/fivestars/project_1/backup/fivestars_1_last.weights  -show_imgs
 ./darknet detector train workspace/fivestars/project_1/obj.data cfg/fivestars_1.cfg workspace/fivestars/project_1/backup/fivestars_1_last.weights  -map
