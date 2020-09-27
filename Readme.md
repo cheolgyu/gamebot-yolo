@@ -174,9 +174,9 @@ docker cp gb-yolo:/workspace/darknet/darknet ./darknet
 #### 처음
 ./darknet detector train workspace/gotgl/project_16/obj.data cfg/gotgl_16.cfg yolov4-tiny.conv.29  -map
 #### 이어서
-./darknet detector train workspace/fivestars/project_1/obj.data cfg/fivestars_1.cfg workspace/fivestars/project_1/backup/fivestars_1_last.weights  -show_imgs
-./darknet detector train workspace/fivestars/project_1/obj.data cfg/fivestars_1.cfg workspace/fivestars/project_1/backup/fivestars_1_last.weights  -map
-./darknet detector map workspace/fivestars/project_1/obj.data cfg/fivestars_1.cfg workspace/fivestars/project_1/backup/fivestars_1_last.weights
+./darknet detector train workspace/gotgl/project_16/obj.data cfg/gotgl_16.cfg workspace/gotgl/project_16/backup/gotgl_16_last.weights  -show_imgs
+./darknet detector train workspace/gotgl/project_16/obj.data cfg/gotgl_16.cfg workspace/gotgl/project_16/backup/gotgl_16_last.weights  -map
+./darknet detector map workspace/gotgl/project_16/obj.data cfg/gotgl_16.cfg workspace/gotgl/project_16/backup/gotgl_16_last.weights 
 #### test
 ./darknet detector demo workspace/gotgl/project_15/obj.data cfg/gotgl_15.cfg workspace/gotgl/project_15/backup/gotgl_15_last.weights  -ext_output /home/cheolgyu/다운로드/gotgl_video_2.mp4
 
@@ -184,9 +184,9 @@ docker cp gb-yolo:/workspace/darknet/darknet ./darknet
 
 ./darknet_cpu detector test workspace/v4/project_3/obj.data  cfg/yolov4-tiny-3l-v4-project_3.cfg  workspace/v4/project_3/backup/yolov4-tiny-3l-v4-project_3_best.weights -thresh 0.01
 
-./darknet detector demo workspace/fivestars/project_1/obj.data cfg/fivestars_1.cfg workspace/fivestars/project_1/backup/fivestars_1_last.weights -ext_output /home/cheolgyu/다운로드/fivestars_v8.mp4
+./darknet detector demo workspace/gotgl/project_16/obj.data cfg/gotgl_16.cfg workspace/gotgl/project_16/backup/gotgl_16_last.weights -ext_output /home/cheolgyu/다운로드/gotgl_video_11.mp4
 
-./darknet detector map workspace/gotgl/project_1/obj.data cfg/yolov4-tiny-gotgl-project_1.cfg workspace/gotgl/project_1/backup/yolov4-tiny-gotgl-project_1_best.weights
+./darknet detector map workspace/gotgl/project_16/obj.data cfg/yolov4-tiny-gotgl-project_1.cfg workspace/gotgl/project_16/backup/gotgl_16_last.weights
 
 
 ##### 사진
