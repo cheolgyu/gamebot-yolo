@@ -147,6 +147,16 @@ voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
     6. 렙업확인
     7. 컨텐츠오픈 확인
     
+4. illusionc 일루전커넥트
+    yolov4-tiny.cfg
+    0. 쾌시작
+    1. 도전
+    2. 알림
+    3. 승리
+    4. 스킵
+    5. 패배
+    6. 획득보상
+    classes=7
 
     ```
 
@@ -172,21 +182,21 @@ docker cp gb-yolo:/workspace/darknet/darknet ./darknet
 
 ### 학습하기
 #### 처음
-./darknet detector train workspace/gotgl/project_16/obj.data cfg/gotgl_16.cfg yolov4-tiny.conv.29  -map
+./darknet detector train workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg yolov4-tiny.conv.29  -map
 #### 이어서
-./darknet detector train workspace/gotgl/project_16/obj.data cfg/gotgl_16.cfg workspace/gotgl/project_16/backup/gotgl_16_last.weights  -show_imgs
-./darknet detector train workspace/gotgl/project_16/obj.data cfg/gotgl_16.cfg workspace/gotgl/project_16/backup/gotgl_16_last.weights  -map
-./darknet detector map workspace/gotgl/project_16/obj.data cfg/gotgl_16.cfg workspace/gotgl/project_16/backup/gotgl_16_last.weights 
+./darknet detector train workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights   -show_imgs
+./darknet detector train workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights   -map
+./darknet detector map workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights  
 #### test
-./darknet detector demo workspace/gotgl/project_15/obj.data cfg/gotgl_15.cfg workspace/gotgl/project_15/backup/gotgl_15_last.weights  -ext_output /home/cheolgyu/다운로드/gotgl_video_2.mp4
+./darknet detector demo workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights  -ext_output /home/cheolgyu/다운로드/illusionc_7.mp4
 
 ./darknet detector test workspace/fivestars/project_1/obj.data   cfg/fivestars_1.cfg  workspace/fivestars/project_1/backup/fivestars_1_last.weights  -thresh 0.25
 
 ./darknet_cpu detector test workspace/v4/project_3/obj.data  cfg/yolov4-tiny-3l-v4-project_3.cfg  workspace/v4/project_3/backup/yolov4-tiny-3l-v4-project_3_best.weights -thresh 0.01
 
-./darknet detector demo workspace/gotgl/project_16/obj.data cfg/gotgl_16.cfg workspace/gotgl/project_16/backup/gotgl_16_last.weights -ext_output /home/cheolgyu/다운로드/gotgl_video_11.mp4
+./darknet detector demo workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights  -ext_output /home/cheolgyu/다운로드/gotgl_video_11.mp4
 
-./darknet detector map workspace/gotgl/project_16/obj.data cfg/yolov4-tiny-gotgl-project_1.cfg workspace/gotgl/project_16/backup/gotgl_16_last.weights
+./darknet detector map workspace/illusionc/p1/obj.data   cfg/illusionc_1.cfg   workspace/illusionc/p1/backup/illusionc_1_last.weights 
 
 
 ##### 사진
@@ -201,14 +211,13 @@ docker cp gb-yolo:/workspace/darknet/darknet ./darknet
 ## weights to tensorflow  to tflite
 
 ### 416
-python save_model.py --weights data/fivestars/fivestars_1_last.weights --output ./checkpoints/fivestars_1_last-416 --input_size 416 --model yolov4 --framework tflite --tiny
+python save_model.py --weights data/illusionc/illusionc_1_last.weights --output ./checkpoints/illusionc_1_last-416 --input_size 416 --model yolov4 --framework tflite --tiny
 
-python convert_tflite.py --weights ./checkpoints/fivestars_1_last-416 --output ./checkpoints/fivestars_1_last-416/fivestars_1_last-416.tflite
+python convert_tflite.py --weights ./checkpoints/illusionc_1_last-416 --output ./checkpoints/illusionc_1_last-416/illusionc_1_last-416.tflite
 
-python detect.py --weights ./checkpoints/fivestars_1_last-416 --size 416 --model yolov4 --image ./fivestars_video_8_00000078.jpg --tiny
+python detect.py --weights ./checkpoints/illusionc_1_last-416 --size 416 --model yolov4 --image ./illusionc_video_8_00000078.jpg --tiny
 
-python detect.py --weights ./checkpoints/fivestars_1_last-416/fivestars_1_last-416.tflite --size 416 --model yolov4 --image ./fivestars_v6_00000063.jpg --framework tflite
-
+python detect.py --weights ./checkpoints/illusionc_1_last-416/illusionc_1_last-416.tflite --size 416 --model yolov4 --image ./illusionc_v6_00000063.jpg --framework tflite
 
 ### 832
 python save_model.py --weights data/gotgl/gotgl_14_last.weights --output ./checkpoints/gotgl_14_last-832 --input_size 832 --model yolov4 --framework tflite --tiny
