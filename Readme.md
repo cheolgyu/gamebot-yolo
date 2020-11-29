@@ -11,7 +11,7 @@ voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
 2. git clone git@github.com:cheolgyu/gamebot-yolo.git
 3. darknet 실행파일 gamebot-yolo에 넣고
 4. git clone git@github.com:cheolgyu/gamebot-dataset.git
-5. gamebot-dataset 이동해서 gamebot-dataset/ds/폴더 원드라이드랑 업로드 동기화 시키고 
+5. gamebot-dataset 이동해서 gamebot-dataset/ds/폴더 원드라이드랑 업로드 동기화 시켜 동영상 다운받기
 6. gamebot-yolo docker는 사용안하고 우분투에서 실행시킴. 
 7. 사진없고 동영상만 있으면 yolo_mark로 프레임 짜르고 
 8. 사진가지고 라벨링을하는데 labelImg로 하기 
@@ -156,9 +156,47 @@ voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
     4. 스킵
     5. 패배
     6. 획득보상
-    classes=7
+    classes=12
 
     ```
+
+5. sk2 세븐나이츠2
+```
+    project1 
+        방치 토벌쾌 진행
+
+        스크린 기준 
+            7.분해결과+금화
+            6.분해팝업
+            5.분해우+ 분해장비선택(금화) + 홈
+            4.일반고급 + 홈
+            3.분해좌 + 홈
+            2.전체가방풀
+            1.절전각방풀
+
+        인식대상기준
+            0 0.964461 0.043478 0.064542 0.081159   --홈
+            1 0.933415 0.923913 0.066176 0.088406   --절전풀
+            2 0.091503 0.053623 0.052288 0.101449   --전체풀
+            3 0.769608 0.775362 0.225490 0.136232   --분해좌
+            4 0.645425 0.673188 0.135621 0.111594   --일반
+            5 0.742647 0.678986 0.135621 0.111594   --고급
+            6 0.903595 0.771014 0.181373 0.168116   --분해우
+            7 0.230801 0.547826 0.100490 0.168116   --분해선택.금화
+            8 0.524101 0.500000 0.776961 0.515942   --분해팝업창
+            9 0.613971 0.663043 0.247549 0.155072   --분해팝업창.확인
+            10 0.428922 0.479710 0.104575 0.171014  --분해결과.금화
+            11 0.498775 0.221014 0.178922 0.120290  --분해결과.텍스트
+
+
+
+
+
+
+```
+
+
+
 
 # opncv 설치
 opncv install
@@ -178,11 +216,17 @@ scripts/install_OpenCV4.sh
 ~/workspace/darknet/build.sh
 docker cp gb-yolo:/workspace/darknet/darknet ./darknet
 
+### cfg
+https://github.com/AlexeyAB/darknet#how-to-train-to-detect-your-custom-objects   
+max_batches to (classes*2000     
+change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before each [yolo] 
+
+
 
 
 ### 학습하기
 #### 처음
-./darknet detector train workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg yolov4-tiny.conv.29  -map
+./darknet detector train workspace/sk2/project_1/obj.data cfg/sk2_1.cfg yolov4-tiny.conv.29  -map
 #### 이어서
 ./darknet detector train workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights   -show_imgs
 ./darknet detector train workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights   -map
