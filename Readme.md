@@ -175,12 +175,12 @@ voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
             1.절전각방풀
 
         인식대상기준
-            0 0.964461 0.043478 0.064542 0.081159   --홈
-            1 0.933415 0.923913 0.066176 0.088406   --절전풀
-            2 0.091503 0.053623 0.052288 0.101449   --전체풀
+            0 0.956291 0.050000 0.058007 0.088406   --홈
+            1 0.933415 0.906522 0.066176 0.140580   --절전풀
+            2 0.097631 0.057246 0.090686 0.097101   --전체풀
             3 0.769608 0.775362 0.225490 0.136232   --분해좌
-            4 0.645425 0.673188 0.135621 0.111594   --일반
-            5 0.742647 0.678986 0.135621 0.111594   --고급
+            4 0.645016 0.675362 0.100490 0.081159   --일반
+            5 0.743056 0.674638 0.097222 0.073913   --고급
             6 0.903595 0.771014 0.181373 0.168116   --분해우
             7 0.230801 0.547826 0.100490 0.168116   --금화위치.분해결과2.분해선택
             7 0.184641 0.547101 0.086601 0.157971   --금화위치.분해결과3.분해선택
@@ -230,14 +230,19 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 ### 학습하기
 #### 처음
 ./darknet detector train workspace/sk2/project_1/obj.data cfg/sk2_1.cfg yolov4-tiny.conv.29  -map
+./darknet detector train workspace/sk2/project_1/obj.data cfg/sk2_2_yolov4-tiny-3l.cfg yolov4-tiny.conv.29  -map
+
 #### 이어서
-./darknet detector train workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights   -show_imgs
+./darknet detector train workspace/sk2/project_1/obj.data cfg/sk2_1.cfg workspace/sk2/project_1/backup/sk2_1_last.weights   -map -show_imgs
+./darknet detector train workspace/sk2/project_1/obj.data cfg/sk2_2_yolov4-tiny-3l.cfg workspace/sk2/project_1/backup/sk2_2_yolov4-tiny-3l_last.weights   -map 
 ./darknet detector train workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights   -map
 ./darknet detector map workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights  
 #### test
-./darknet detector demo workspace/sk2/project_1/obj.data cfg/sk2_1.cfg workspace/sk2/project_1/backup/sk2_1_best.weights  -ext_output /home/cheolgyu/다운로드/sk2_0020.mp4
+./darknet detector demo workspace/sk2/project_1/obj.data cfg/sk2_1.cfg workspace/sk2/project_1/backup/sk2_1_last.weights  -ext_output /home/cheolgyu/다운로드/sk2_0020.mp4
+./darknet detector demo workspace/sk2/project_1/obj.data cfg/sk2_2_yolov4-tiny-3l.cfg workspace/sk2/project_1/backup/sk2_2_yolov4-tiny-3l_best.weights  -ext_output /home/cheolgyu/다운로드/sk2_0021.mp4
 
-./darknet detector test workspace/fivestars/project_1/obj.data   cfg/fivestars_1.cfg  workspace/fivestars/project_1/backup/fivestars_1_last.weights  -thresh 0.25
+./darknet detector test workspace/sk2/project_1/obj.data  cfg/sk2_1.cfg  workspace/sk2/project_1/backup/sk2_1_last.weights  -thresh 0.25
+./darknet detector test workspace/sk2/project_1/obj.data  cfg/sk2_2_yolov4-tiny-3l.cfg  workspace/sk2/project_1/backup/sk2_2_yolov4-tiny-3l_best.weights  -thresh 0.25
 
 ./darknet_cpu detector test workspace/v4/project_3/obj.data  cfg/yolov4-tiny-3l-v4-project_3.cfg  workspace/v4/project_3/backup/yolov4-tiny-3l-v4-project_3_best.weights -thresh 0.01
 
