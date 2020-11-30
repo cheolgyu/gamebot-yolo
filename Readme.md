@@ -182,10 +182,13 @@ voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
             4 0.645425 0.673188 0.135621 0.111594   --일반
             5 0.742647 0.678986 0.135621 0.111594   --고급
             6 0.903595 0.771014 0.181373 0.168116   --분해우
-            7 0.230801 0.547826 0.100490 0.168116   --분해선택.금화
+            7 0.230801 0.547826 0.100490 0.168116   --금화위치.분해결과2.분해선택
+            7 0.184641 0.547101 0.086601 0.157971   --금화위치.분해결과3.분해선택
+
             8 0.524101 0.500000 0.776961 0.515942   --분해팝업창
             9 0.613971 0.663043 0.247549 0.155072   --분해팝업창.확인
-            10 0.428922 0.479710 0.104575 0.171014  --분해결과.금화
+            10 0.428922 0.479710 0.104575 0.171014  --금화위치.분해결과2
+            10 0.361928 0.484783 0.104575 0.169565  --금화위치.분해결과3
             11 0.498775 0.221014 0.178922 0.120290  --분해결과.텍스트
 
 
@@ -232,7 +235,7 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 ./darknet detector train workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights   -map
 ./darknet detector map workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights  
 #### test
-./darknet detector demo workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights  -ext_output /home/cheolgyu/다운로드/illusionc_7.mp4
+./darknet detector demo workspace/sk2/project_1/obj.data cfg/sk2_1.cfg workspace/sk2/project_1/backup/sk2_1_best.weights  -ext_output /home/cheolgyu/다운로드/sk2_0020.mp4
 
 ./darknet detector test workspace/fivestars/project_1/obj.data   cfg/fivestars_1.cfg  workspace/fivestars/project_1/backup/fivestars_1_last.weights  -thresh 0.25
 
