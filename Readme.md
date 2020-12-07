@@ -190,6 +190,12 @@ voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
             10 0.428922 0.479710 0.104575 0.171014  --금화위치.분해결과2
             10 0.361928 0.484783 0.104575 0.169565  --금화위치.분해결과3
             11 0.498775 0.221014 0.178922 0.120290  --분해결과.텍스트
+            12 0.928102 0.072500 0.119361 0.085000  --스킵
+            13 0.613715 0.699846 0.204861 0.121914  --스킵확인
+            14 0.387587 0.699074 0.203993 0.111111  --스킵취소
+            15 0.879229 0.790833 0.121241 0.208333  --스마.off
+            16 0.879229 0.790833 0.121241 0.208333  --스마.on
+
 
 
 
@@ -229,8 +235,8 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 
 ### 학습하기
 #### 처음
-./darknet detector train workspace/sk2/project_1/obj.data cfg/sk2_1.cfg yolov4-tiny.conv.29  -map
 ./darknet detector train workspace/sk2/project_1/obj.data cfg/sk2_2_yolov4-tiny-3l.cfg yolov4-tiny.conv.29  -map
+./darknet detector train workspace/sk2/project_3/obj.data cfg/sk2_p3_yolov4-tiny-3l.cfg yolov4-tiny.conv.29  -map
 
 #### 이어서
 ./darknet detector train workspace/sk2/project_1/obj.data cfg/sk2_1.cfg workspace/sk2/project_1/backup/sk2_1_last.weights   -map -show_imgs
@@ -238,7 +244,7 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 ./darknet detector train workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights   -map
 ./darknet detector map workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights  
 #### test
-./darknet detector demo workspace/sk2/project_1/obj.data cfg/sk2_2_yolov4-tiny-3l.cfg workspace/sk2/project_1/backup/sk2_2_yolov4-tiny-3l_last.weights  -ext_output /home/cheolgyu/다운로드/sk2_0020.mp4
+./darknet detector demo workspace/sk2/project_2/obj.data cfg/sk2_p2_yolov4-tiny-3l.cfg workspace/sk2/project_2/backup/sk2_p2_yolov4-tiny-3l_last.weights  -ext_output /home/cheolgyu/다운로드/sk2_0023.mp4 -thresh 0.8
 ./darknet detector demo workspace/sk2/project_1/obj.data cfg/sk2_2_yolov4-tiny-3l.cfg workspace/sk2/project_1/backup/sk2_2_yolov4-tiny-3l_best.weights  -ext_output /home/cheolgyu/다운로드/sk2_0021.mp4
 
 ./darknet detector test workspace/sk2/project_1/obj.data  cfg/sk2_1.cfg  workspace/sk2/project_1/backup/sk2_1_last.weights  -thresh 0.25
@@ -261,6 +267,13 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 ./darknet detector demo 오브젝트.데이터 cfg파일 무게  -ext_output 동영상
 
 ## weights to tensorflow  to tflite
+### 480
+python save_model.py --weights data/sk2_2_yolov4-tiny-3l_last.weights  --output ./checkpoints/sk2_2-480 --input_size 480 --model yolov4 --framework tflite --tiny
+
+python convert_tflite.py --weights ./checkpoints/sk2_2-480 --output ./checkpoints/sk2_2-480/sk2_2-480.tflite
+
+python detect.py --weights ./checkpoints/sk2_2-480/sk2_2-480.tflite --size 480 --model yolov4 --image ./sk2_test_img/sk2_0020_00000292.jpg --framework tflite
+
 
 ### 416
 python save_model.py --weights data/illusionc/illusionc_1_last.weights --output ./checkpoints/illusionc_1_last-416 --input_size 416 --model yolov4 --framework tflite --tiny
@@ -302,6 +315,7 @@ python detect.py --weights ./checkpoints/gotgl_14_last-1280/gotgl_14_last-1280.t
 
 
 ## weights to tensorflow  to tflite  ==>2
+
 
 ### 960x480
 python save_model.py --weights data/gotgl/gotgl_11_last.weights --output ./checkpoints/gotgl_11-960x480 --input_size 960x480 --model yolov4 --framework tflite --tiny
