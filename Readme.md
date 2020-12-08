@@ -238,12 +238,12 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 ./darknet detector train workspace/sk2/project_3/obj.data cfg/sk2_p3_yolov4-tiny-3l.cfg yolov4-tiny.conv.29  -map
 
 #### 이어서
-./darknet detector train workspace/sk2/project_1/obj.data cfg/sk2_1.cfg workspace/sk2/project_1/backup/sk2_1_last.weights   -map -show_imgs
-./darknet detector train workspace/sk2/project_1/obj.data cfg/sk2_2_yolov4-tiny-3l.cfg workspace/sk2/project_1/backup/sk2_2_yolov4-tiny-3l_last.weights   -map 
+./darknet detector train workspace/sk2/project_3/obj.data cfg/sk2_p3_yolov4-tiny-3l.cfg workspace/sk2/project_3/backup/sk2_p3_yolov4-tiny-3l_last.weights   -map 
+./darknet detector train workspace/sk2/project_1/obj.data cfg/sk2_2_yolov4-tiny-3l.cfg workspace/sk2/project_1/backup/sk2_2_yolov4-tiny-3l_last.weights   -map  -show_imgs
 ./darknet detector train workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights   -map
 ./darknet detector map workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights  
 #### test
-./darknet detector demo workspace/sk2/project_3/obj.data cfg/sk2_p3_yolov4-tiny-3l.cfg workspace/sk2/project_3/backup/sk2_p3_yolov4-tiny-3l_last.weights  -ext_output /home/cheolgyu/다운로드/sk2_0020.mp4 -thresh 0.6
+./darknet detector demo workspace/sk2/project_3/obj.data cfg/sk2_p3_yolov4-tiny-3l.cfg workspace/sk2/project_3/backup/sk2_p3_yolov4-tiny-3l_last.weights  -ext_output /home/cheolgyu/다운로드/sk2_0032.mp4 -thresh 0.6
 ./darknet detector demo workspace/sk2/project_1/obj.data cfg/sk2_2_yolov4-tiny-3l.cfg workspace/sk2/project_1/backup/sk2_2_yolov4-tiny-3l_best.weights  -ext_output /home/cheolgyu/다운로드/sk2_0021.mp4
 
 ./darknet detector test workspace/sk2/project_1/obj.data  cfg/sk2_1.cfg  workspace/sk2/project_1/backup/sk2_1_last.weights  -thresh 0.25
@@ -270,10 +270,16 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 ### 480
 python save_model.py --weights data/sk2_p3_yolov4-tiny-3l_last.weights  --output ./checkpoints/sk2_p3-480 --input_size 480 --model yolov4 --framework tflite --tiny
 
-python convert_tflite.py --weights ./checkpoints/sk2_p3-480 --output ./checkpoints/sk2_p3-480/sk2_p3-480.tflite
+python convert_tflite.py --weights ./checkpoints/sk2_p3-480 --output ./checkpoints/sk2_p3-480/sk2_p3-480.tflite 
 
-python detect.py --weights ./checkpoints/sk2_2-480/sk2_2-480.tflite --size 480 --model yolov4 --image ./sk2_test_img/sk2_0020_00000292.jpg --framework tflite
+python detect.py --weights ./checkpoints/sk2_p3-480/sk2_p3-480.tflite --size 480 --model yolov4 --image ./sk2_test_img/sk2_0020_00000493.jpg --framework tflite
 
+### 640
+python save_model.py --weights data/sk2_p3_yolov4-tiny-3l_last.weights  --output ./checkpoints/sk2_p3-640 --input_size 640 --model yolov4 --framework tflite --tiny
+
+python convert_tflite.py --weights ./checkpoints/sk2_p3-640 --output ./checkpoints/sk2_p3-640/sk2_p3-640.tflite 
+
+python detect.py --weights ./checkpoints/sk2_p3-640/sk2_p3-640.tflite --size 640 --model yolov4 --image ./sk2_test_img/sk2_0020_00000493.jpg --framework tflite
 
 ### 416
 python save_model.py --weights data/illusionc/illusionc_1_last.weights --output ./checkpoints/illusionc_1_last-416 --input_size 416 --model yolov4 --framework tflite --tiny
