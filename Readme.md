@@ -235,7 +235,6 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 
 ### 학습하기
 #### 처음
-./darknet detector train workspace/sk2/project_1/obj.data cfg/sk2_2_yolov4-tiny-3l.cfg yolov4-tiny.conv.29  -map
 ./darknet detector train workspace/sk2/project_3/obj.data cfg/sk2_p3_yolov4-tiny-3l.cfg yolov4-tiny.conv.29  -map
 
 #### 이어서
@@ -244,7 +243,7 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 ./darknet detector train workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights   -map
 ./darknet detector map workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights  
 #### test
-./darknet detector demo workspace/sk2/project_2/obj.data cfg/sk2_p2_yolov4-tiny-3l.cfg workspace/sk2/project_2/backup/sk2_p2_yolov4-tiny-3l_last.weights  -ext_output /home/cheolgyu/다운로드/sk2_0023.mp4 -thresh 0.8
+./darknet detector demo workspace/sk2/project_3/obj.data cfg/sk2_p3_yolov4-tiny-3l.cfg workspace/sk2/project_3/backup/sk2_p3_yolov4-tiny-3l_last.weights  -ext_output /home/cheolgyu/다운로드/sk2_0020.mp4 -thresh 0.6
 ./darknet detector demo workspace/sk2/project_1/obj.data cfg/sk2_2_yolov4-tiny-3l.cfg workspace/sk2/project_1/backup/sk2_2_yolov4-tiny-3l_best.weights  -ext_output /home/cheolgyu/다운로드/sk2_0021.mp4
 
 ./darknet detector test workspace/sk2/project_1/obj.data  cfg/sk2_1.cfg  workspace/sk2/project_1/backup/sk2_1_last.weights  -thresh 0.25
@@ -264,13 +263,14 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 ./darknet detector test /home/cheolgyu/workspace/gb-yolo/workspace/blackdesertm/project_1/obj.data  /home/cheolgyu/workspace/gb-yolo/cfg/yolov4-tiny-3l_baram_crop.cfg  /home/cheolgyu/workspace/gb-yolo/workspace/blackdesertm/project_1/backup/yolov4-tiny-3l_baram_crop_best.weights -thresh 0.25
 
 ##### 동영상
-./darknet detector demo 오브젝트.데이터 cfg파일 무게  -ext_output 동영상
+./darknet detector demo 오브젝트.데이터S cfg파일 무게  -ext_output 동영상
 
-## weights to tensorflow  to tflite
+## weights to tensorflow  to tflite -container run
+### update classes  /data/classes
 ### 480
-python save_model.py --weights data/sk2_2_yolov4-tiny-3l_last.weights  --output ./checkpoints/sk2_2-480 --input_size 480 --model yolov4 --framework tflite --tiny
+python save_model.py --weights data/sk2_p3_yolov4-tiny-3l_last.weights  --output ./checkpoints/sk2_p3-480 --input_size 480 --model yolov4 --framework tflite --tiny
 
-python convert_tflite.py --weights ./checkpoints/sk2_2-480 --output ./checkpoints/sk2_2-480/sk2_2-480.tflite
+python convert_tflite.py --weights ./checkpoints/sk2_p3-480 --output ./checkpoints/sk2_p3-480/sk2_p3-480.tflite
 
 python detect.py --weights ./checkpoints/sk2_2-480/sk2_2-480.tflite --size 480 --model yolov4 --image ./sk2_test_img/sk2_0020_00000292.jpg --framework tflite
 
