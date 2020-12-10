@@ -195,6 +195,12 @@ voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
             14 0.387587 0.699074 0.203993 0.111111  --스킵취소
             15 0.879229 0.790833 0.121241 0.208333  --스마.off
             16 0.879229 0.790833 0.121241 0.208333  --스마.on
+            17 0.500000 0.498457 0.913194 0.651235  --팀교체.전체
+            18 0.486979 0.650463 0.477431 0.331790  --팀교체.중간
+            19 0.601562 0.715278 0.197917 0.158951  --팀교체.진행
+            20 0.293837 0.401235 0.556424 0.709877  --도움.전체
+            21 0.296441 0.109568 0.459201 0.120370  --도움.중간
+            22 0.492622 0.105710 0.070312 0.128086  --도움.닫기
 
 
 
@@ -235,7 +241,7 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 
 ### 학습하기
 #### 처음
-./darknet detector train workspace/sk2/project_3/obj.data cfg/sk2_p3_yolov4-tiny-3l.cfg yolov4-tiny.conv.29  -map
+./darknet detector train workspace/sk2/project_4/obj.data cfg/sk2_p4_yolov4-tiny-3l.cfg yolov4-tiny.conv.29  -map
 
 #### 이어서
 ./darknet detector train workspace/sk2/project_3/obj.data cfg/sk2_p3_yolov4-tiny-3l.cfg workspace/sk2/project_3/backup/sk2_p3_yolov4-tiny-3l_last.weights   -map 
