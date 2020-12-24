@@ -162,21 +162,11 @@ voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
 
 5. sk2 세븐나이츠2
 ```
-    project1 
-        방치 토벌쾌 진행
-
-        스크린 기준 
-            7.분해결과+금화
-            6.분해팝업
-            5.분해우+ 분해장비선택(금화) + 홈
-            4.일반고급 + 홈
-            3.분해좌 + 홈
-            2.전체가방풀
-            1.절전각방풀
+    project5
 
         인식대상기준
             0 0.956291 0.050000 0.058007 0.088406   --홈
-            1 0.933415 0.906522 0.066176 0.140580   --절전풀
+            1 0.933415 0.906522 0.066176 0.140580   --절전풀.방치o
             2 0.097631 0.057246 0.090686 0.097101   --전체풀
             3 0.769608 0.775362 0.225490 0.136232   --분해좌
             4 0.645016 0.675362 0.100490 0.081159   --일반
@@ -201,6 +191,7 @@ voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
             20 0.293837 0.401235 0.556424 0.709877  --도움.전체
             21 0.296441 0.109568 0.459201 0.120370  --도움.중간
             22 0.492622 0.105710 0.070312 0.128086  --도움.닫기
+            23 0.522059 0.492972 0.727376 0.638554  --전투패배팝업
 
 
 
@@ -281,11 +272,11 @@ python convert_tflite.py --weights ./checkpoints/sk2_p3-480 --output ./checkpoin
 python detect.py --weights ./checkpoints/sk2_p3-480/sk2_p3-480.tflite --size 480 --model yolov4 --image ./sk2_test_img/sk2_0020_00000493.jpg --framework tflite
 
 ### 640
-python save_model.py --weights data/sk2_p3_yolov4-tiny-3l_last.weights  --output ./checkpoints/sk2_p3-640 --input_size 640 --model yolov4 --framework tflite --tiny
+python save_model.py --weights data/sk2_p4_yolov4-tiny-3l_last.weights  --output ./checkpoints/sk2_p4-640 --input_size 640 --model yolov4 --framework tflite --tiny
 
-python convert_tflite.py --weights ./checkpoints/sk2_p3-640 --output ./checkpoints/sk2_p3-640/sk2_p3-640.tflite 
+python convert_tflite.py --weights ./checkpoints/sk2_p4-640 --output ./checkpoints/sk2_p4-640/sk2_p4-640.tflite 
 
-python detect.py --weights ./checkpoints/sk2_p3-640/sk2_p3-640.tflite --size 640 --model yolov4 --image ./sk2_test_img/sk2_0020_00000493.jpg --framework tflite
+python detect.py --weights ./checkpoints/sk2_p4-640/sk2_p4-640.tflite --size 640 --model yolov4 --image ./sk2_test_img/sk2_0020_00000493.jpg --framework tflite
 
 ### 416
 python save_model.py --weights data/illusionc/illusionc_1_last.weights --output ./checkpoints/illusionc_1_last-416 --input_size 416 --model yolov4 --framework tflite --tiny
