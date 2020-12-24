@@ -1,5 +1,0 @@
-classes= 7
-train  = workspace/illusionc/p1/train.txt
-valid = workspace/illusionc/p1/valid.txt
-names = workspace/illusionc/p1/data.names
-backup = workspace/illusionc/p1/backup

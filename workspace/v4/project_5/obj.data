@@ -1,5 +1,0 @@
-classes= 6
-train  = workspace/v4/project_5/train.txt
-valid = workspace/v4/project_5/valid.txt
-names = workspace/v4/project_5/data.names
-backup = workspace/v4/project_5/backup
