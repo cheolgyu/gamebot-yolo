@@ -241,7 +241,7 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 ./darknet detector train workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights   -map
 ./darknet detector map workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights  
 #### test
-./darknet detector demo workspace/sk2/project_5/obj.data cfg/sk2_p5_yolov4-tiny-3l.cfg workspace/sk2/project_5/backup/sk2_p5_yolov4-tiny-3l_best.weights  -ext_output /home/cheolgyu/다운로드/sk2_0032.mp4 -thresh 0.6
+./darknet detector demo workspace/sk2/project_6/obj.data cfg/sk2_p6_yolov4-tiny.cfg workspace/sk2/project_6/backup/sk2_p6_yolov4-tiny_best.weights  -ext_output /home/cheolgyu/다운로드/sk2_0032.mp4 -thresh 0.6
 ./darknet detector demo workspace/sk2/project_1/obj.data cfg/sk2_2_yolov4-tiny-3l.cfg workspace/sk2/project_1/backup/sk2_2_yolov4-tiny-3l_best.weights  -ext_output /home/cheolgyu/다운로드/sk2_0021.mp4
 
 ./darknet detector test workspace/sk2/project_1/obj.data  cfg/sk2_1.cfg  workspace/sk2/project_1/backup/sk2_1_last.weights  -thresh 0.25
@@ -265,10 +265,10 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 
 ## weights to tensorflow  to tflite -container run
 ### update classes  /data/classes
-### 480
-python save_model.py --weights data/sk2_p3_yolov4-tiny-3l_last.weights  --output ./checkpoints/sk2_p3-480 --input_size 480 --model yolov4 --framework tflite --tiny
+### 512
+python save_model.py --weights data/sk2_p6_yolov4-tiny_best.weights  --output ./checkpoints/sk2_p6-512 --input_size 512 --model yolov4 --framework tflite --tiny
 
-python convert_tflite.py --weights ./checkpoints/sk2_p3-480 --output ./checkpoints/sk2_p3-480/sk2_p3-480.tflite 
+python convert_tflite.py --weights ./checkpoints/sk2_p6-512 --output ./checkpoints/sk2_p6-512/sk2_p6-512.tflite 
 
 python detect.py --weights ./checkpoints/sk2_p3-480/sk2_p3-480.tflite --size 480 --model yolov4 --image ./sk2_test_img/sk2_0020_00000493.jpg --framework tflite
 
