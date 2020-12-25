@@ -235,7 +235,7 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 ./darknet detector train workspace/sk2/project_5/obj.data cfg/sk2_p5_yolov4-tiny-3l.cfg yolov4-tiny.conv.29  -map
 
 #### 이어서
-./darknet detector train workspace/sk2/project_5/obj.data cfg/sk2_p5_yolov4-tiny-3l.cfg workspace/sk2/project_5/backup/sk2_p5_yolov4-tiny-3l_1000.weights   -map 
+./darknet detector train workspace/sk2/project_5/obj.data cfg/sk2_p5_yolov4-tiny-3l.cfg workspace/sk2/project_5/backup/sk2_p5_yolov4-tiny-3l_last.weights   -map 
 ./darknet detector train workspace/sk2/project_1/obj.data cfg/sk2_2_yolov4-tiny-3l.cfg workspace/sk2/project_1/backup/sk2_2_yolov4-tiny-3l_last.weights   -map  -show_imgs
 ./darknet detector train workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights   -map
 ./darknet detector map workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights  
