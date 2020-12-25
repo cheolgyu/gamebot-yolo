@@ -272,9 +272,9 @@ python convert_tflite.py --weights ./checkpoints/sk2_p3-480 --output ./checkpoin
 python detect.py --weights ./checkpoints/sk2_p3-480/sk2_p3-480.tflite --size 480 --model yolov4 --image ./sk2_test_img/sk2_0020_00000493.jpg --framework tflite
 
 ### 640
-python save_model.py --weights data/sk2_p4_yolov4-tiny-3l_last.weights  --output ./checkpoints/sk2_p4-640 --input_size 640 --model yolov4 --framework tflite --tiny
+python save_model.py --weights data/sk2_p5_yolov4-tiny-3l_best.weights  --output ./checkpoints/sk2_p5-640 --input_size 640 --model yolov4 --framework tflite --tiny
 
-python convert_tflite.py --weights ./checkpoints/sk2_p4-640 --output ./checkpoints/sk2_p4-640/sk2_p4-640.tflite 
+python convert_tflite.py --weights ./checkpoints/sk2_p5-640 --output ./checkpoints/sk2_p5-640/sk2_p5-640.tflite 
 
 python detect.py --weights ./checkpoints/sk2_p4-640/sk2_p4-640.tflite --size 640 --model yolov4 --image ./sk2_test_img/sk2_0020_00000493.jpg --framework tflite
 
