@@ -233,6 +233,7 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 ### 학습하기
 #### 처음
 ./darknet detector train workspace/sk2/project_5/obj.data cfg/sk2_p5_yolov4-tiny-3l.cfg yolov4-tiny.conv.29  -map
+./darknet detector train workspace/sk2/project_6/obj.data cfg/sk2_p6_yolov4-tiny.cfg yolov4-tiny.conv.29  -map
 
 #### 이어서
 ./darknet detector train workspace/sk2/project_5/obj.data cfg/sk2_p5_yolov4-tiny-3l.cfg workspace/sk2/project_5/backup/sk2_p5_yolov4-tiny-3l_last.weights   -map 
