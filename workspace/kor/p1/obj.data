@@ -1,0 +1,5 @@
+classes= 8
+train  = workspace/kor/p1/train.txt
+valid = workspace/kor/p1/valid.txt
+names = workspace/kor/p1/data.names
+backup = workspace/kor/p1/backup
