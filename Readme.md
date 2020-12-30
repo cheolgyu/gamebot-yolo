@@ -132,12 +132,12 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 ./darknet detector train workspace/sk2/project_6/obj.data cfg/sk2_p6_yolov4-tiny.cfg yolov4-tiny.conv.29  -map
 
 #### 이어서
-./darknet detector train workspace/kor/p1/obj.data cfg/kor_p1.cfg workspace/kor/p1/backup/kor_p1_last.weights   -map 
+./darknet detector train workspace/gotgl/p1/obj.data cfg/gotgl_p1.cfg workspace/gotgl/p1/backup/gotgl_p1_last.weights   -map 
 ./darknet detector train workspace/sk2/project_1/obj.data cfg/sk2_2_yolov4-tiny-3l.cfg workspace/sk2/project_1/backup/sk2_2_yolov4-tiny-3l_last.weights   -map  -show_imgs
 ./darknet detector train workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights   -map
 ./darknet detector map workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights  
 #### test
-./darknet detector demo workspace/kor/p1/obj.data cfg/kor_p1.cfg workspace/kor/p1/backup/kor_p1_last.weights  -ext_output /home/cheolgyu/다운로드/kor_0013.mp4 -thresh 0.6
+./darknet detector demo workspace/gotgl/p1/obj.data cfg/gotgl_p1.cfg workspace/gotgl/p1/backup/gotgl_p1_last.weights  -ext_output /home/cheolgyu/다운로드/gotgl_008.mp4 -thresh 0.6
 ./darknet detector demo workspace/sk2/project_1/obj.data cfg/sk2_2_yolov4-tiny-3l.cfg workspace/sk2/project_1/backup/sk2_2_yolov4-tiny-3l_best.weights  -ext_output /home/cheolgyu/다운로드/sk2_0021.mp4
 
 ./darknet detector test workspace/sk2/project_1/obj.data  cfg/sk2_1.cfg  workspace/sk2/project_1/backup/sk2_1_last.weights  -thresh 0.25
