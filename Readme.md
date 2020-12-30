@@ -28,112 +28,8 @@ voc -> yolo 포맷 변경: https://github.com/ssaru/convert2Yolo.git
 
 # 프로젝트들
 1. v4
-2. gotgl: 왕좌의게임:윈터이즈커밍
-```
-    project5 
-        project4 1000.weights에서 시작
-        해상도= width=960 height=480
-        인식성공
-    project6 
-        project5 last.weights에서 시작 ( 약 2000 iteration)
-        해상도 608 * 608 안되
-        960 * 960 
-    project5 +  https://github.com/Zellius/tensorflow-yolov4-tflite, https://github.com/hunglc007/tensorflow-yolov4-tflite/pull/163
-        --input_size 960x480  안드에서 인식률 떨어짐. 100퍼 ->20퍼 + 인식도 잘안됨. 
-    project6
-        960 * 960 로 더학습 
-    project7
-        960 * 960 ==> map 0%
-    project8
-        추가
-            확인
-            일어나기 
-        project5_last로 시작 ==> nan 나옴
-        처음부터 == > 잘됨.
-    project9 832x832 출시, 추론하는데 2~3초걸림
-        추가
-            확인
-            일어나기 + 수령+도움 
-        처음부터 
-    project10 
-        필요
-            수정: 일어나기-상태바:축소 -> 피통 빨간부분만 인식 후에 없으면 0.0 좌표클릭 이벤트발생 
-            추가: 자원수집 : 이슈 수집 버튼이 너무작음 832x832해도 작음 자원외의 비슷한 아이콘도 존재함. 
-            ==>3l-832x832가 2~3초정도걸림. 그래서 project10은 아예 yolov4 로 테스트
-            
-            CUDA Error: out of memory:
-    project11
-        tiny-3l  
-        960x480
-        map 100% 나와서 종료 tflite test에서는 정확도가 낮음 
-    ./darknet detector map workspace/gotgl/project_11/obj.data cfg/gotgl_11.cfg workspace/gotgl/project_11/backup/gotgl_11_last.weights
-    project12
-        tiny-3l 처음부터  
-        960x960 학습 : 1696x954 픽셀 이미지
-        map 0% 실패
-        ./darknet detector map workspace/gotgl/project_12/obj.data cfg/gotgl_12.cfg workspace/gotgl/project_12/backup/gotgl_12_last.weights
-    project13
-        tiny-3l 처음부터  
-        832x832 학습 : 1696x954 픽셀 이미지
-        map 0% 실패
-
-        https://github.com/AlexeyAB/darknet/wiki/FAQ---frequently-asked-questions
-        ./darknet detector map workspace/gotgl/project_14/obj.data cfg/gotgl_14.cfg workspace/gotgl/project_14/backup/gotgl_14_last.weights
-
-        
-        480x480 하니깐 잘된다 대박
-    project14
-        project13 + 라벨링 정리.
-        480x480 으로학습 960으로 tflite
-        ./darknet detector demo workspace/gotgl/project_14/obj.data cfg/gotgl_14.cfg workspace/gotgl/project_14/backup/gotgl_14_last.weights  -ext_output /home/cheolgyu/다운로드/gotgl_video_1.mp4
-
-    project15
-        라벨링
-            0. 수령 - > 이미지 하단 위주로 다시라벨링.
-            1. 도움
-            2. 수령확인
-            3. 상태바- > 할리스아이콘으로
-            4. 식량
-            5. 목재
-            6. 석재
-            7. 철광
-            8. 음식
-            9. 창닫기
-        dataset= 
-            v8 = 수령,도움,할리스,식량,목재,석재,철광,음식 - 350
-            v9 = 창닫기 - 153
-            수령_도움_할리스_독사진 - 442
-            식량_목재_석재_철과_음식_확대사진 < - 손으로 라벨링 !!  - 31
-            수령x_t1 - 14
-            수령x_t2 - 69
-        + 창닫기 추가
-        + 수령 아이콘 모양의 하단 부분으로 라벨링 변경.
-        
-        480x480 으로학습 960으로 tflite
-
-        1. 수령가능 하지 않는상태는 라벨링 하지 않고 테스트 실패면? -> 잘되네.
-            1-1. 수령가능 하지 않는 상태를 라벨링하여 학습한다
-            1-2. 수령가능 하지 않는 상태의 이미지 수를 많게하고 나머진 10개 씩만 하고 테스트
-        
-    project16- 실패 
-        카메라 확대 로 416 가자 . 
-        + dataset 10~19
-        확대한것 사용
-        0. 수령 
-        1. 수령x5
-        2. 수령확인
-        3. 도움
-        4. 할리스
-        5. 식량
-        6. 목재
-        7. 석재
-        8. 철광
-        9. 음식
-        10. 창닫기
-        fivestars_1.cfg 복사
-
-
- ```           
+2. gotgl: 왕좌의게임:윈터이즈커밍 갱신
+       
 3. fivestars 파이브스타즈
     ```
     yolov4-tiny.cfg
@@ -232,7 +128,7 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 
 ### 학습하기
 #### 처음
-./darknet detector train workspace/kor/p1/obj.data cfg/kor_p1.cfg yolov4-tiny.conv.29  -map
+./darknet detector train workspace/gotgl/p1/obj.data cfg/gotgl_p1.cfg yolov4-tiny.conv.29  -map
 ./darknet detector train workspace/sk2/project_6/obj.data cfg/sk2_p6_yolov4-tiny.cfg yolov4-tiny.conv.29  -map
 
 #### 이어서
