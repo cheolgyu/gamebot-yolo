@@ -137,7 +137,7 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 ./darknet detector train workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights   -map
 ./darknet detector map workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights  
 #### test
-./darknet detector demo workspace/gotgl/p1/obj.data cfg/gotgl_p1.cfg workspace/gotgl/p1/backup/gotgl_p1_last.weights  -ext_output /home/cheolgyu/다운로드/gotgl_008.mp4 -thresh 0.6
+./darknet detector demo workspace/sk2/p7/obj.data cfg/sk2_p7.cfg workspace/sk2/p7/backup/sk2_p7_best.weights  -ext_output /home/cheolgyu/다운로드/sk2_0066.mp4 -thresh 0.6
 ./darknet detector demo workspace/sk2/project_1/obj.data cfg/sk2_2_yolov4-tiny-3l.cfg workspace/sk2/project_1/backup/sk2_2_yolov4-tiny-3l_best.weights  -ext_output /home/cheolgyu/다운로드/sk2_0021.mp4
 
 ./darknet detector test workspace/sk2/project_1/obj.data  cfg/sk2_1.cfg  workspace/sk2/project_1/backup/sk2_1_last.weights  -thresh 0.25
@@ -162,9 +162,9 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 ## weights to tensorflow  to tflite -container run
 ### update classes  /data/classes
 ### 512
-python save_model.py --weights data/gotgl_p1_last.weights  --output ./checkpoints/gotgl-p1-512 --input_size 512 --model yolov4 --framework tflite --tiny
+python save_model.py --weights data/sk2_p7_best.weights  --output ./checkpoints/sk2-p7-448 --input_size 448 --model yolov4 --framework tflite --tiny
 
-python convert_tflite.py --weights ./checkpoints/gotgl-p1-512 --output ./checkpoints/gotgl-p1-512/gotgl-p1-512.tflite 
+python convert_tflite.py --weights ./checkpoints/sk2-p7-448 --output ./checkpoints/sk2-p7-448/sk2-p7-448.tflite 
 
 python detect.py --weights ./checkpoints/gotgl-p1-512/gotgl-p1-512.tflite   --size 512 --model yolov4 --image ./gotgl_001_00000000.jpg --framework tflite
 
