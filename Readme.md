@@ -162,7 +162,7 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 ## weights to tensorflow  to tflite -container run
 ### update classes  /data/classes
 ### 512
-python save_model.py --weights data/sk2_p7_best.weights  --output ./checkpoints/sk2-p7-448 --input_size 448 --model yolov4 --framework tflite --tiny
+python save_model.py --weights data/sk2_p7_last.weights  --output ./checkpoints/sk2-p7-448 --input_size 448 --model yolov4 --framework tflite --tiny
 
 python convert_tflite.py --weights ./checkpoints/sk2-p7-448 --output ./checkpoints/sk2-p7-448/sk2-p7-448.tflite 
 
