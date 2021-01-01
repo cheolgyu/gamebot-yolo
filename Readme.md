@@ -132,7 +132,7 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 ./darknet detector train workspace/sk2/p7/obj.data cfg/sk2_p7.cfg yolov4-tiny.conv.29  -map
 
 #### 이어서
-./darknet detector train workspace/gotgl/p1/obj.data cfg/gotgl_p1.cfg workspace/gotgl/p1/backup/gotgl_p1_last.weights   -map 
+./darknet detector train workspace/sk2/p7/obj.data cfg/sk2_p7.cfg workspace/sk2/p7/backup/sk2_p7_last.weights   -map 
 ./darknet detector train workspace/sk2/project_1/obj.data cfg/sk2_2_yolov4-tiny-3l.cfg workspace/sk2/project_1/backup/sk2_2_yolov4-tiny-3l_last.weights   -map  -show_imgs
 ./darknet detector train workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights   -map
 ./darknet detector map workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights  
@@ -166,7 +166,7 @@ python save_model.py --weights data/sk2_p7_best.weights  --output ./checkpoints/
 
 python convert_tflite.py --weights ./checkpoints/sk2-p7-448 --output ./checkpoints/sk2-p7-448/sk2-p7-448.tflite 
 
-python detect.py --weights ./checkpoints/gotgl-p1-512/gotgl-p1-512.tflite   --size 512 --model yolov4 --image ./gotgl_001_00000000.jpg --framework tflite
+python detect.py --weights ./checkpoints/sk2-p7-448/sk2-p7-448.tflite    --size 448 --model yolov4 --image ./sk2_0051_00000001.jpg --framework tflite
 
 python detect.py --weights ./checkpoints/sk2_p6-448/sk2_p6-448.tflite  --size 448 --model yolov4 --image ./sk2_0070_00000000.jpg --framework tflite
 
