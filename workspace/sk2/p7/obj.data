@@ -1,0 +1,5 @@
+classes= 29
+train  = workspace/sk2/p7/train.txt
+valid = workspace/sk2/p7/valid.txt
+names = workspace/sk2/p7/data.names
+backup = workspace/sk2/p7/backup
