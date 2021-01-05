@@ -166,7 +166,19 @@ python save_model.py --weights data/sk2_p7_last.weights  --output ./checkpoints/
 
 python convert_tflite.py --weights ./checkpoints/sk2-p7-448 --output ./checkpoints/sk2-p7-448/sk2-p7-448.tflite 
 
-python detect.py --weights ./checkpoints/sk2-p7-448/sk2-p7-448.tflite    --size 448 --model yolov4 --image ./sk2_0051_00000001.jpg --framework tflite
+
+# yolov4 quantize int8
+python convert_tflite.py --weights ./checkpoints/sk2-p7-448 --output ./checkpoints/sk2-p7-448-int8.tflite --quantize_mode int8 --dataset ./coco_dataset/coco/val207.txt
+
+# yolov4 quantize float16
+python convert_tflite.py --weights ./checkpoints/sk2-p7-448 --output ./checkpoints/sk2-p7-448-fp16.tflite --quantize_mode float16
+
+
+
+
+python detect.py --weights ./checkpoints/sk2-p7-448-fp16.tflite    --size 448 --model yolov4 --image ./sk2_0022_00000066.jpg --framework tflite
+
+
 
 python detect.py --weights ./checkpoints/sk2_p6-448/sk2_p6-448.tflite  --size 448 --model yolov4 --image ./sk2_0070_00000000.jpg --framework tflite
 
