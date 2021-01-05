@@ -128,7 +128,7 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 
 ### 학습하기
 #### 처음
-./darknet detector train workspace/gotgl/p1/obj.data cfg/gotgl_p1.cfg yolov4-tiny.conv.29  -map
+./darknet detector train workspace/baram/p1/obj.data cfg/baram_p1.cfg yolov4-tiny.conv.29  -map
 ./darknet detector train workspace/sk2/p7/obj.data cfg/sk2_p7.cfg yolov4-tiny.conv.29  -map
 
 #### 이어서
