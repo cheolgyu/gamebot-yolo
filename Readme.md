@@ -173,7 +173,9 @@ python convert_tflite.py --weights ./checkpoints/sk2-p7-448 --output ./checkpoin
 # yolov4 quantize float16
 python convert_tflite.py --weights ./checkpoints/sk2-p7-448 --output ./checkpoints/sk2-p7-448-fp16.tflite --quantize_mode float16
 
-
+# yolov4 quantize float16
+python convert_tflite.py --weights ./checkpoints/kor-p1-448 --output ./checkpoints/kor-p1-448-fp16.tflite --quantize_mode float16
+python detect.py --weights ./checkpoints/kor-p1-448-fp16.tflite    --size 448 --model yolov4 --image ./kor_0013_00000646.jpg --framework tflite
 
 
 python detect.py --weights ./checkpoints/sk2-p7-448-fp16.tflite    --size 448 --model yolov4 --image ./sk2_0022_00000066.jpg --framework tflite
