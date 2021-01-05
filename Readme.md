@@ -162,7 +162,7 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 ## weights to tensorflow  to tflite -container run
 ### update classes  /data/classes
 ### 512
-python save_model.py --weights data/sk2_p7_last.weights  --output ./checkpoints/sk2-p7-448 --input_size 448 --model yolov4 --framework tflite --tiny
+python save_model.py --weights data/baram_p1_last.weights  --output ./checkpoints/baram_p1-448 --input_size 448 --model yolov4 --framework tflite --tiny
 
 python convert_tflite.py --weights ./checkpoints/sk2-p7-448 --output ./checkpoints/sk2-p7-448/sk2-p7-448.tflite 
 
@@ -171,7 +171,9 @@ python convert_tflite.py --weights ./checkpoints/sk2-p7-448 --output ./checkpoin
 python convert_tflite.py --weights ./checkpoints/sk2-p7-448 --output ./checkpoints/sk2-p7-448-int8.tflite --quantize_mode int8 --dataset ./coco_dataset/coco/val207.txt
 
 # yolov4 quantize float16
-python convert_tflite.py --weights ./checkpoints/sk2-p7-448 --output ./checkpoints/sk2-p7-448-fp16.tflite --quantize_mode float16
+python convert_tflite.py --weights ./checkpoints/baram_p1-448 --output ./checkpoints/baram-p1-448-fp16.tflite --quantize_mode float16
+python detect.py --weights ./checkpoints/baram-p1-448-fp16.tflite    --size 448 --model yolov4 --image ./baram_004_00000001.jpg --framework tflite
+
 
 # yolov4 quantize float16
 python convert_tflite.py --weights ./checkpoints/kor-p1-448 --output ./checkpoints/kor-p1-448-fp16.tflite --quantize_mode float16
