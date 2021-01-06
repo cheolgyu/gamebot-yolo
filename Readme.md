@@ -132,12 +132,12 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 ./darknet detector train workspace/sk2/p7/obj.data cfg/sk2_p7.cfg yolov4-tiny.conv.29  -map
 
 #### 이어서
-./darknet detector train workspace/sk2/p7/obj.data cfg/sk2_p7.cfg workspace/sk2/p7/backup/sk2_p7_last.weights   -map 
+./darknet detector train workspace/baram/p1/obj.data cfg/baram_p1.cfg workspace/baram/p1/backup/baram_p1_1000.weights   -map 
 ./darknet detector train workspace/sk2/project_1/obj.data cfg/sk2_2_yolov4-tiny-3l.cfg workspace/sk2/project_1/backup/sk2_2_yolov4-tiny-3l_last.weights   -map  -show_imgs
 ./darknet detector train workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights   -map
 ./darknet detector map workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights  
 #### test
-./darknet detector demo workspace/baram/p1/obj.data cfg/baram_p1.cfg workspace/baram/p1/backup/baram_p1_last.weights  -ext_output /home/cheolgyu/다운로드/baram_0010.mp4 -thresh 0.6
+./darknet detector demo workspace/baram/p1/obj.data cfg/baram_p1.cfg workspace/baram/p1/backup/baram_p1_last.weights  -ext_output /home/cheolgyu/다운로드/baram_003.mp4 -thresh 0.6
 ./darknet detector demo workspace/sk2/project_1/obj.data cfg/sk2_2_yolov4-tiny-3l.cfg workspace/sk2/project_1/backup/sk2_2_yolov4-tiny-3l_best.weights  -ext_output /home/cheolgyu/다운로드/sk2_0021.mp4
 
 ./darknet detector test workspace/sk2/project_1/obj.data  cfg/sk2_1.cfg  workspace/sk2/project_1/backup/sk2_1_last.weights  -thresh 0.25
