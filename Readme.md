@@ -128,16 +128,16 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 
 ### 학습하기
 #### 처음
-./darknet detector train workspace/baram/p1/obj.data cfg/baram_p1.cfg yolov4-tiny.conv.29  -map
+./darknet detector train workspace/baram/p1/obj.data cfg/baram-p1-3l.cfg yolov4-tiny.conv.29  -map
 ./darknet detector train workspace/sk2/p7/obj.data cfg/sk2_p7.cfg yolov4-tiny.conv.29  -map
 
 #### 이어서
-./darknet detector train workspace/baram/p1/obj.data cfg/baram_p1.cfg workspace/baram/p1/backup/baram_p1_last.weights   -map 
+./darknet detector train workspace/baram/p1/obj.data cfg/baram-p1-3l.cfg workspace/baram/p1/backup/baram-p1-3l_last.weights   -map 
 ./darknet detector train workspace/sk2/project_1/obj.data cfg/sk2_2_yolov4-tiny-3l.cfg workspace/sk2/project_1/backup/sk2_2_yolov4-tiny-3l_last.weights   -map  -show_imgs
 ./darknet detector train workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights   -map
 ./darknet detector map workspace/illusionc/p1/obj.data cfg/illusionc_1.cfg workspace/illusionc/p1/backup/illusionc_1_last.weights  
 #### test
-./darknet detector demo workspace/baram/p1/obj.data cfg/baram_p1.cfg workspace/baram/p1/backup/baram_p1_last.weights  -ext_output /home/cheolgyu/다운로드/baram_003.mp4 -thresh 0.6
+./darknet detector demo workspace/baram/p1/obj.data cfg/baram_p1.cfg workspace/baram/p1/backup/baram-p1-3l_last.weights  -ext_output /home/cheolgyu/다운로드/baram_003.mp4 -thresh 0.6
 ./darknet detector demo workspace/sk2/project_1/obj.data cfg/sk2_2_yolov4-tiny-3l.cfg workspace/sk2/project_1/backup/sk2_2_yolov4-tiny-3l_best.weights  -ext_output /home/cheolgyu/다운로드/sk2_0021.mp4
 
 ./darknet detector test workspace/sk2/project_1/obj.data  cfg/sk2_1.cfg  workspace/sk2/project_1/backup/sk2_1_last.weights  -thresh 0.25
@@ -162,7 +162,7 @@ change [filters=255] to filters=(classes + 5)x3 in the 3 [convolutional] before 
 ## weights to tensorflow  to tflite -container run
 ### update classes  /data/classes
 ### 512
-python save_model.py --weights data/baram_p1_last.weights  --output ./checkpoints/baram_p1-480 --input_size 480 --model yolov4 --framework tflite --tiny
+python save_model.py --weights data/baram-p1-3l_last.weights  --output ./checkpoints/baram-p1-3l-640 --input_size 480 --model yolov4 --framework tflite --tiny
 
 python convert_tflite.py --weights ./checkpoints/sk2-p7-448 --output ./checkpoints/sk2-p7-448/sk2-p7-448.tflite 
 
@@ -171,8 +171,8 @@ python convert_tflite.py --weights ./checkpoints/sk2-p7-448 --output ./checkpoin
 python convert_tflite.py --weights ./checkpoints/sk2-p7-448 --output ./checkpoints/sk2-p7-448-int8.tflite --quantize_mode int8 --dataset ./coco_dataset/coco/val207.txt
 
 # yolov4 quantize float16
-python convert_tflite.py --weights ./checkpoints/baram_p1-480 --output ./checkpoints/baram-p1-480-fp16.tflite --quantize_mode float16
-python detect.py --weights ./checkpoints/baram-p1-480-fp16.tflite    --size 480 --model yolov4 --image ./baram_0019_00000000.jpg --framework tflite
+python convert_tflite.py --weights ./checkpoints/baram-p1-3l-640 --output ./checkpoints/baram-p1-3l-640-fp16.tflite --quantize_mode float16
+python detect.py --weights ./checkpoints/baram-p1-3l-640-fp16.tflite    --size 640 --model yolov4 --image ./baram_0019_00000000.jpg --framework tflite
 
 
 # yolov4 quantize float16
