@@ -172,7 +172,7 @@ python convert_tflite.py --weights ./checkpoints/sk2-p7-448 --output ./checkpoin
 
 # yolov4 quantize float16
 python convert_tflite.py --weights ./checkpoints/baram-p1-3l-640 --output ./checkpoints/baram-p1-3l-640-fp16.tflite --quantize_mode float16
-python detect.py --weights ./checkpoints/baram-p1-3l-640-fp16.tflite    --size 640 --model yolov4 --image ./baram_0019_00000000.jpg --framework tflite
+python detect.py --weights ./checkpoints/baram-p1-3l-640-fp16.tflite    --size 640 --model yolov4 --image ./baram_0022_00000000.jpg --framework tflite
 
 
 # yolov4 quantize float16
